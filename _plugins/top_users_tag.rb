@@ -47,6 +47,8 @@ module Jekyll
 
             users["items"].each do |user|
 
+                sleep(5)
+
                 data = getUserData(user["login"])
                 
                 @top_users[user["login"]] = {
