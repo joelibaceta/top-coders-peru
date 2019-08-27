@@ -32,6 +32,9 @@ module Jekyll
             repos = JSON.parse(response.body) 
             counter = 0
 
+            p repos
+ 
+
             repos["items"].each do |repo| 
                 
                 counter += (repo["stargazers_count"].to_i)

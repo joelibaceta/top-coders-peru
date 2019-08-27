@@ -1,7 +1,7 @@
 language: ruby
 cache: bundler
 script:
-  - JEKYLL_ENV=production bundle exec jekyll build --destination site
+  - JEKYLL_ENV=production bundle exec jekyll build --destination site --trace
 deploy:
   provider: pages
   local-dir: ./site
