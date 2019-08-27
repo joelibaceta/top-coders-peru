@@ -11,7 +11,7 @@ module Jekyll
         end
 
         def countCommits(user)
-            uri = URI.parse("https://api.github.com/search/commits?q=author-name:#{user}&#{authorization_string}")
+            uri = URI.parse("https://api.github.com/search/commits?q=author:#{user}&#{authorization_string}")
 
             http = Net::HTTP.new(uri.host, uri.port)
             http.use_ssl = true
@@ -21,7 +21,7 @@ module Jekyll
 
             response = http.request(request)
 
-            commits = JSON.parse(response.body) 
+            commits = JSON.parse(response.body)
             
             return commits["total_count"]
         end
@@ -53,6 +53,7 @@ module Jekyll
             max_commits = 0
             max_stars = 0
             max_followers = 0
+            max_public_repos = 0
             
             (1..1).each do |i|
 
@@ -63,25 +64,30 @@ module Jekyll
 
                 users["items"].each do |user|
 
-                    p user["login"]
-
                     sleep(5)
 
                     data = getUserData(user["login"])
+
+                    p data["name"]
+
                     commits = countCommits(user["login"])
                     stars = countStarts(user["login"])
                     followers = data["followers"]
+                    repos = data["public_repos"]
 
                     max_commits = commits if commits > max_commits
                     max_stars = stars if stars > max_stars
                     max_followers = followers if followers > max_followers
+                    max_public_repos = repos if repos > max_public_repos
                     
                     @top_users << {
                         id: user["login"],
+                        pic: data["avatar_url"],
                         name: data["name"],
                         email: data["email"],
                         company: data["company"],
                         followers: followers,
+                        repos: repos,
                         url: data["html_url"],
                         commits: commits,
                         stars: stars
@@ -91,14 +97,25 @@ module Jekyll
             end
             
             @top_users.each do |user|
-                user[:score] = (user[:commits] / max_commits + user[:stars] / max_stars + user[:followers] / max_followers) / 3.0
+                user[:score] = (user[:commits] / max_commits.to_f + user[:stars] / max_stars.to_f + user[:followers] / max_followers.to_f + user[:repos] / max_public_repos.to_f) / 4.0
             end
 
-            return @top_users
+            return @top_users.sort_by {|obj| obj[:score]}.reverse
         end
 
         def render(context)
-            data = getTopUsersData
+            users = getTopUsersData
+            element = "<table>\n"
+            element += "<thead><th><td colspan='2'>user</td><td>name</td><td>email</td><td>company</td><td>followers</td><td>commits</td><td>stars</td><td>repos</td></th><thead>\n"
+            element += "<tbody>"
+            users.each_with_index do |user, i|
+                element += "<tr><td>#{i}</td>"
+                element += "<td><img  width='60px' src='#{user[:pic]}'></td>"
+                element += "<td>#{user[:id]}</td><td><a href='#{user[:url]}'>#{user[:name]}</a></td><td>#{user[:email]}</td><td>#{user[:company]}</td>"
+                element += "<td>#{user[:followers]}</td><td>#{user[:commits]}</td><td>#{user[:stars]}</td><td>#{user[:repos]}</td></tr>\n"
+            end
+            element += "</tbody>"
+            element += "</table>\n"
         end
 
         def initialize(tag_name, text, tokens)

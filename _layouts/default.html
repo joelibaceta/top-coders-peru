@@ -6,10 +6,23 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         {%- seo -%} 
+        {% capture maincss %}{% include custom.scss %}{% endcapture %}
   </head>
 
-  <body> 
-    {{ content }}
+  <body>
+      <style type="text/css">
+        {{ maincss | scssify }}
+      </style>
+    <div class="container">
+        <div class="column">
+          <h1>Perú Top Coders</h1>
+          <p>based on github stats</p>
+        </div>
+        <div class="column">
+            {{ content }}
+        </div>
+    </div>
+    
   </body>
 
 </html>

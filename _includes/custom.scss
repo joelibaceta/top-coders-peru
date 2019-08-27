@@ -1,0 +1,18 @@
+@import "minima";
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.column {
+    padding: 50px;
+}
+
+table {
+    font-size: 12px;
+    thead {
+        font-weight: 600;
+    }
+}
+
