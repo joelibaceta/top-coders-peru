@@ -55,11 +55,11 @@ module Jekyll
             max_followers = 0
             max_public_repos = 0
             
-            (1..2).each do |i|
+            (1..3).each do |i|
 
                 sleep(30)
 
-                uri = URI.parse("https://api.github.com/search/users?q=location:lima followers:>10&per_page=50&page=#{i}&sort=followers&order=desc&#{authorization_string}")
+                uri = URI.parse("https://api.github.com/search/users?q=location:lima followers:>10&per_page=30&page=#{i}&sort=followers&order=desc&#{authorization_string}")
                 
                 response = Net::HTTP.get_response(uri)
                 users = JSON.parse(response.body)
@@ -113,7 +113,7 @@ module Jekyll
             users.each_with_index do |user, i|
                 element += "<tr><td>#{i}</td>"
                 element += "<td><img  width='60px' src='#{user[:pic]}'></td>"
-                element += "<td>#{user[:id]}</td><td><a href='#{user[:url]}'>#{user[:name]}</a></td><td>#{user[:email]}</td><td>#{user[:company]}</td>"
+                element += "<td><a href='#{user[:url]}'>#{user[:id]}</a></td><td>#{user[:name]}</td><td>#{user[:email]}</td><td>#{user[:company]}</td>"
                 element += "<td>#{user[:followers]}</td><td>#{user[:commits]}</td><td>#{user[:stars]}</td><td>#{user[:repos]}</td></tr>\n"
             end
             element += "</tbody>"
