@@ -1,6 +1,8 @@
 # Top Coders Perú
 Based on Github Stats
 
+<br/>
+
 ## ¿Cómo se calcula el Raking?
 
 Para generar el ranking se realiza un calculo del indice rockstar, considerando las siguientes variables:
@@ -14,7 +16,7 @@ El indice de cada una de estas variables se divide entre el maximo general encon
 
 ![CodeCogsEqn.svg](images/CodeCogsEqn.svg)
 
-Con esto se obtiene un indice que representa que tan lejos estamos de los maximos valores encontrados para cada variable.
+<br/>
 
 ## ¿Cómo funciona?
 
