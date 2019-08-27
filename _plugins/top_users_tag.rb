@@ -22,7 +22,7 @@ module Jekyll
             response = Net::HTTP.get_response(uri)
             repos = JSON.parse(response.body) 
             counter = 0
-            p uri
+
             repos["items"].each do |repo| 
                 counter += (repo["stargazers_count"]).to_i
             end
@@ -40,9 +40,13 @@ module Jekyll
         def getTopUsersData
             @top_users = {}
 
-            (1..3).each do |i|
+            max_commits = 0
+            max_stars = 0
+            max_followers = 0
+            
+            (1..1).each do |i|
 
-                uri = URI.parse("https://api.github.com/search/users?q=location:lima followers:>10&per_page=100&page=#{i}&sort=followers&order=desc&#{authorization_string}")
+                uri = URI.parse("https://api.github.com/search/users?q=location:lima followers:>10&per_page=30&page=#{i}&sort=followers&order=desc&#{authorization_string}")
                 p uri
                 response = Net::HTTP.get_response(uri)
                 users = JSON.parse(response.body)
@@ -52,18 +56,29 @@ module Jekyll
                     sleep(5)
 
                     data = getUserData(user["login"])
+                    commits = countCommits(user["login"]
+                    stars = countStarts(user["login"]
+                    followers = data["followers"]
+
+                    max_commits = commits if commits > max_commits
+                    max_stars = stars if stars > max_stars
+                    max_followers = followers if followers > max_followers
                     
                     @top_users[user["login"]] = {
                         name: data["name"],
                         email: data["email"],
                         company: data["company"],
-                        followers: data["followers"],
+                        followers: followers,
                         url: data["html_url"],
-                        commits: countCommits(user["login"]),
-                        stars: countStarts(user["login"])
+                        commits: commits,
+                        stars: stars
                     }
                 end
 
+            end
+            
+            @top_users.each do |user|
+                user["score"] = (user["commits"] / max_commits + user["stars"] / max_stars + user["followers"] / max_followers) / 3
             end
 
             return @top_users
@@ -71,7 +86,7 @@ module Jekyll
 
         def render(context)
             data = getTopUsersData
-            return "<span>#{data}</span>" 
+            
         end
 
         def initialize(tag_name, text, tokens)
