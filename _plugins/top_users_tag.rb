@@ -40,27 +40,31 @@ module Jekyll
         def getTopUsersData
             @top_users = {}
 
-            uri = URI.parse("https://api.github.com/search/users?q=location:lima&#{authorization_string}")
-            p uri
-            response = Net::HTTP.get_response(uri)
-            users = JSON.parse(response.body)
+            (1..3).each do i
 
-            users["items"].each do |user|
+                uri = URI.parse("https://api.github.com/search/users?q=location:lima followers:>10&per_page=100&page=#{i}&sort=followers&order=desc&#{authorization_string}")
+                p uri
+                response = Net::HTTP.get_response(uri)
+                users = JSON.parse(response.body)
 
-                sleep(5)
+                users["items"].each do |user|
 
-                data = getUserData(user["login"])
-                
-                @top_users[user["login"]] = {
-                    name: data["name"],
-                    email: data["email"],
-                    company: data["company"],
-                    followers: data["followers"],
-                    url: data["html_url"],
-                    commits: countCommits(user["login"]),
-                    stars: countStarts(user["login"])
-                }
-            end 
+                    sleep(3)
+                    
+                    data = getUserData(user["login"])
+                    
+                    @top_users[user["login"]] = {
+                        name: data["name"],
+                        email: data["email"],
+                        company: data["company"],
+                        followers: data["followers"],
+                        url: data["html_url"],
+                        commits: countCommits(user["login"]),
+                        stars: countStarts(user["login"])
+                    }
+                end
+
+            end
 
             return @top_users
         end
