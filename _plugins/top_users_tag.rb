@@ -86,7 +86,6 @@ module Jekyll
 
         def render(context)
             data = getTopUsersData
-            
         end
 
         def initialize(tag_name, text, tokens)
