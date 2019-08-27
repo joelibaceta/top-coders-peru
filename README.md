@@ -1,6 +1,8 @@
 # Top Coders Perú
 Based on Github Stats
 
+![CodeCogsEqn.svg](images/demo.png)
+
 <br/>
 
 ## ¿Cómo se calcula el Raking?
