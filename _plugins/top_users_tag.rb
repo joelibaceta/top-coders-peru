@@ -40,7 +40,7 @@ module Jekyll
         def getTopUsersData
             @top_users = {}
 
-            (1..3).each do i
+            (1..3).each do |i|
 
                 uri = URI.parse("https://api.github.com/search/users?q=location:lima followers:>10&per_page=100&page=#{i}&sort=followers&order=desc&#{authorization_string}")
                 p uri
@@ -50,7 +50,7 @@ module Jekyll
                 users["items"].each do |user|
 
                     sleep(3)
-                    
+
                     data = getUserData(user["login"])
                     
                     @top_users[user["login"]] = {
