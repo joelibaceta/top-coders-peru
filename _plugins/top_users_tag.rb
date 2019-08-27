@@ -32,11 +32,7 @@ module Jekyll
             repos = JSON.parse(response.body) 
             counter = 0
 
-            p repos
- 
-
-            repos["items"].each do |repo| 
-                
+            repos["items"].each do |repo|
                 counter += (repo["stargazers_count"].to_i)
             end
             return counter
@@ -52,7 +48,7 @@ module Jekyll
         end
 
         def getTopUsersData
-            @top_users = {}
+            @top_users = []
 
             max_commits = 0
             max_stars = 0
@@ -60,12 +56,14 @@ module Jekyll
             
             (1..1).each do |i|
 
-                uri = URI.parse("https://api.github.com/search/users?q=location:lima followers:>10&per_page=30&page=#{i}&sort=followers&order=desc&#{authorization_string}")
-                p uri
+                uri = URI.parse("https://api.github.com/search/users?q=location:lima followers:>10&per_page=100&page=#{i}&sort=followers&order=desc&#{authorization_string}")
+                
                 response = Net::HTTP.get_response(uri)
                 users = JSON.parse(response.body)
 
                 users["items"].each do |user|
+
+                    p user["login"]
 
                     sleep(5)
 
@@ -78,7 +76,8 @@ module Jekyll
                     max_stars = stars if stars > max_stars
                     max_followers = followers if followers > max_followers
                     
-                    @top_users[user["login"]] = {
+                    @top_users << {
+                        id: user["login"],
                         name: data["name"],
                         email: data["email"],
                         company: data["company"],
@@ -92,7 +91,7 @@ module Jekyll
             end
             
             @top_users.each do |user|
-                user["score"] = (user["commits"] / max_commits + user["stars"] / max_stars + user["followers"] / max_followers) / 3
+                user[:score] = (user[:commits] / max_commits + user[:stars] / max_stars + user[:followers] / max_followers) / 3.0
             end
 
             return @top_users
