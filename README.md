@@ -14,6 +14,8 @@ Para generar el ranking se realiza un calculo del indice rockstar, considerando 
 
 El indice de cada una de estas variables se divide entre el maximo general encontrado para cada variable, esto permitira obtener un indice relativo al total de la muestra.
 
+<br/>
+
 ![CodeCogsEqn.svg](images/CodeCogsEqn.svg)
 
 <br/>
