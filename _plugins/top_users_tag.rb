@@ -34,11 +34,11 @@ module Jekyll
             response = Net::HTTP.get_response(uri)
             users = JSON.parse(response.body)
 
-            p response.body
+            
 
             users["items"].each do |user|
                 
-
+                p user["login"]
                 @top_users[user["login"]] = {
                     name: user["name"],
                     email: user["email"],
@@ -49,7 +49,7 @@ module Jekyll
                     stars: countStarts(user["login"])
                 }
             end 
-            
+
             return @top_users
         end
 
