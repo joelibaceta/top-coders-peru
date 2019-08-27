@@ -55,7 +55,9 @@ module Jekyll
             max_followers = 0
             max_public_repos = 0
             
-            (1..1).each do |i|
+            (1..2).each do |i|
+
+                sleep(30)
 
                 uri = URI.parse("https://api.github.com/search/users?q=location:lima followers:>10&per_page=50&page=#{i}&sort=followers&order=desc&#{authorization_string}")
                 
