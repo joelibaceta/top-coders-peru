@@ -16,3 +16,21 @@ table {
     }
 }
 
+.contribute-button {
+    padding-top: 30px;
+
+    a { 
+        display: flex;
+        align-items: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+
+        svg {
+            margin-right: 10px;
+        }
+    }
+
+
+}
