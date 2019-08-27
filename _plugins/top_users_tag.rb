@@ -12,8 +12,17 @@ module Jekyll
 
         def countCommits(user)
             uri = URI.parse("https://api.github.com/search/commits?q=author-name:#{user}&#{authorization_string}")
-            response = Net::HTTP.get_response(uri)
+
+            http = Net::HTTP.new(uri.host, uri.port)
+            http.use_ssl = true
+
+            request = Net::HTTP::Get.new(uri)
+            request["Accept"] = 'application/vnd.github.cloak-preview'
+
+            response = http.request(request)
+
             commits = JSON.parse(response.body) 
+            
             return commits["total_count"]
         end
 
@@ -24,9 +33,11 @@ module Jekyll
             counter = 0
 
             repos["items"].each do |repo| 
-                counter += (repo["stargazers_count"]).to_i
+                
+                counter += (repo["stargazers_count"].to_i)
             end
             return counter
+            
         end
 
         def getUserData(user)
