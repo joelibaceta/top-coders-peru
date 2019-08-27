@@ -56,8 +56,8 @@ module Jekyll
                     sleep(5)
 
                     data = getUserData(user["login"])
-                    commits = countCommits(user["login"]
-                    stars = countStarts(user["login"]
+                    commits = countCommits(user["login"])
+                    stars = countStarts(user["login"])
                     followers = data["followers"]
 
                     max_commits = commits if commits > max_commits
