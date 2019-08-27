@@ -1,37 +1,21 @@
-## Welcome to GitHub Pages
+# Top Coders Perú
+Based on Github Stats
 
-You can use the [editor on GitHub](https://github.com/joelibaceta/peru-top-users/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+## ¿Cómo se calcula el Raking?
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Para generar el ranking se realiza un calculo del indice rockstar, considerando las siguientes variables:
 
-### Markdown
+- Popularidad (_Número de seguidores_) 
+- Impacto (_Número de estrellas en repositorios propios_)
+- Actividad (_Número de commits en el ultimo año_)
+- OpenSource (_Numero de proyectos personales publicos_) 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+El indice de cada una de estas variables se divide entre el maximo general encontrado para cada variable, esto permitira obtener un indice relativo al total de la muestra.
 
-```markdown
-Syntax highlighted code block
+![CodeCogsEqn.svg](images/CodeCogsEqn.svg)
 
-# Header 1
-## Header 2
-### Header 3
+Con esto se obtiene un indice que representa que tan lejos estamos de los maximos valores encontrados para cada variable.
 
-- Bulleted
-- List
+## ¿Cómo funciona?
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/joelibaceta/peru-top-users/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+La pagina esta basada en Jekyll para la generacion de contenido estatico y de Travis CI para la generacion automatica de nuevos deploys cada dia, manteniendo actualizada la información del ranking.
