@@ -10,6 +10,26 @@ module Jekyll
             return "client_id=#{ENV['CLIENT_ID']}&client_secret=#{ENV['CLIENT_SECRET']}"
         end
 
+        def countRepos(user)
+            uri = URI.parse("https://api.github.com/users/#{user}/repos?#{authorization_string}")
+
+            http = Net::HTTP.new(uri.host, uri.port)
+            http.use_ssl = true
+
+            request = Net::HTTP::Get.new(uri)
+            request["Accept"] = 'application/vnd.github.cloak-preview'
+
+            response = http.request(request)
+
+            repos = JSON.parse(response.body)
+
+            repos = repos.select do | repo |
+                !repo["fork"]
+            end
+
+            return repos.size
+        end
+
         def countCommits(user)
             uri = URI.parse("https://api.github.com/search/commits?q=author:#{user}&#{authorization_string}")
 
@@ -43,7 +63,7 @@ module Jekyll
             uri = URI.parse("https://api.github.com/users/#{user}?#{authorization_string}")
             response = Net::HTTP.get_response(uri)
             user = JSON.parse(response.body) 
-             
+
             return user
         end
 
@@ -75,7 +95,7 @@ module Jekyll
                     commits = countCommits(user["login"])
                     stars = countStarts(user["login"])
                     followers = data["followers"]
-                    repos = data["public_repos"]
+                    repos = countRepos(user["login"])
 
                     max_commits = commits if commits > max_commits
                     max_stars = stars if stars > max_stars
