@@ -131,7 +131,7 @@ module Jekyll
             element += "<thead><th><td colspan='2'>user</td><td>name</td><td>email</td><td>company</td><td>followers</td><td>commits</td><td>stars</td><td>repos</td></th><thead>\n"
             element += "<tbody>"
             users.each_with_index do |user, i|
-                element += "<tr><td>#{i}</td>"
+                element += "<tr><td>#{i + 1}</td>"
                 element += "<td><img  width='60px' src='#{user[:pic]}'></td>"
                 element += "<td><a href='#{user[:url]}'>#{user[:id]}</a></td><td>#{user[:name]}</td><td>#{user[:email]}</td><td>#{user[:company]}</td>"
                 element += "<td>#{user[:followers]}</td><td>#{user[:commits]}</td><td>#{user[:stars]}</td><td>#{user[:repos]}</td></tr>\n"
