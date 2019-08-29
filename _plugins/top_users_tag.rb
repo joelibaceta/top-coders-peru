@@ -47,7 +47,9 @@ module Jekyll
         end
 
         def countCommits(user)
-            uri = URI.parse("https://api.github.com/search/commits?q=author:#{user}&#{authorization_string}")
+            now = Time.new
+            date_one_year_ago = "#{(now.year - 1).to_s}/#{now.month.to_s.rjust(2, '0')}/#{now.to_s.day.rjust(2, '0')}" 
+            uri = URI.parse("https://api.github.com/search/commits?q=author:#{user} committer-date:>#{date_one_year_ago}&#{authorization_string}")
 
             http = Net::HTTP.new(uri.host, uri.port)
             http.use_ssl = true
