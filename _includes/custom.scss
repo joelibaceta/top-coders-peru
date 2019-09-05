@@ -1,12 +1,66 @@
 @import "minima";
 
-.container {
-    display: flex;
-    justify-content: center;
+/** Mixin for responsive design **/
+@mixin breakpoint($class) {
+  /** Breakpoints based on Bootstrap4 **/
+  @if $class == xs {
+    @media (max-width: 575px) {
+      @content;
+    }
+  } @else if $class == sm {
+    @media (min-width: 576px) {
+      @content;
+    }
+  } @else if $class == md {
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if $class == lg {
+    @media (min-width: 992px) {
+      @content;
+    }
+  } @else if $class == xl {
+    @media (min-width: 1140px) {
+      @content;
+    }
+  } @else if $class == xxl {
+    @media (min-width: 1180px) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint mixin supports: xs, sm, md, lg and xl";
+  }
 }
 
+.UsersTableContainer {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.Main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    @include breakpoint(xl) {
+        flex-direction: row;
+    }
+    &__Info {
+      min-width: 250px;
+    }
+    &__Content {
+      flex: 1;
+      overflow-x: auto;
+    }
+}
+
+.User {
+  &__image {
+    width: 60px;
+    min-width: 30px;
+  }
+}
 .column {
-    padding: 50px;
+    padding: 20px;
 }
 
 table {
@@ -19,7 +73,7 @@ table {
 .contribute-button {
     padding-top: 30px;
 
-    a { 
+    a {
         display: flex;
         align-items: center;
         padding-top: 10px;
