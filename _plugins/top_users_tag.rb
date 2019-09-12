@@ -48,7 +48,7 @@ module Jekyll
 
         def countCommits(user)
             now = Time.new
-            date_one_year_ago = "#{(now.year - 1).to_s}-#{now.month.to_s.rjust(2, '0')}-#{now.day.to_s.rjust(2, '0')}" 
+            date_one_year_ago = "#{(now.year - 1).to_s}-#{now.month.to_s.rjust(2, '0')}-#{now.day.to_s.rjust(2, '0')}"
             uri = URI.parse("https://api.github.com/search/commits?q=author:#{user} committer-date:>#{date_one_year_ago}&#{authorization_string}")
 
             http = Net::HTTP.new(uri.host, uri.port)
@@ -60,27 +60,27 @@ module Jekyll
             response = http.request(request)
 
             commits = JSON.parse(response.body)
-            
+
             return commits["total_count"]
         end
 
         def countStarts(user)
             uri = URI.parse("https://api.github.com/search/repositories?q=user:#{user} stars:>0&#{authorization_string}")
             response = Net::HTTP.get_response(uri)
-            repos = JSON.parse(response.body) 
+            repos = JSON.parse(response.body)
             counter = 0
 
             repos["items"].each do |repo|
                 counter += (repo["stargazers_count"].to_i)
             end
             return counter
-            
+
         end
 
         def getUserData(user)
             uri = URI.parse("https://api.github.com/users/#{user}?#{authorization_string}")
             response = Net::HTTP.get_response(uri)
-            user = JSON.parse(response.body) 
+            user = JSON.parse(response.body)
 
             return user
         end
@@ -93,13 +93,13 @@ module Jekyll
             max_followers = 0
             max_public_repos = 0
             max_issues = 0
-            
+
             (1..3).each do |i|
 
                 sleep(30)
 
                 uri = URI.parse("https://api.github.com/search/users?q=location:lima followers:>10&per_page=30&page=#{i}&sort=followers&order=desc&#{authorization_string}")
-                
+
                 response = Net::HTTP.get_response(uri)
                 users = JSON.parse(response.body)
 
@@ -122,7 +122,7 @@ module Jekyll
                     max_followers = followers if followers > max_followers
                     max_public_repos = repos if repos > max_public_repos
                     max_issues = issues if issues > max_issues
-                    
+
                     @top_users << {
                         id: user["login"],
                         pic: data["avatar_url"],
@@ -139,7 +139,6 @@ module Jekyll
                 end
 
             end
-            
             @top_users.each do |user|
                 user[:score] = (
                     user[:commits] / max_commits.to_f +
@@ -155,17 +154,17 @@ module Jekyll
 
         def render(context)
             users = getTopUsersData
-            element = "<table>\n"
+            element = "<div class='UsersTableContainer'> <table>\n"
             element += "<thead><th><td colspan='2'>User</td><td>Name</td><td>Email</td><td>Company</td><td>Followers</td><td>Commits</td><td>Stars</td><td>Repos</td><td>Issues/PR</td></th><thead>\n"
             element += "<tbody>"
             users.each_with_index do |user, i|
                 element += "<tr><td>#{i + 1}</td>"
-                element += "<td><img  width='60px' src='#{user[:pic]}'></td>"
+                element += "<td><img class='User__image' src='#{user[:pic]}'></td>"
                 element += "<td><a href='#{user[:url]}'>#{user[:id]}</a></td><td>#{user[:name]}</td><td>#{user[:email]}</td><td>#{user[:company]}</td>"
                 element += "<td>#{user[:followers]}</td><td>#{user[:commits]}</td><td>#{user[:stars]}</td><td>#{user[:repos]}</td><td>#{user[:issues]}</td></tr>\n"
             end
             element += "</tbody>"
-            element += "</table>\n"
+            element += "</table> </div>\n"
         end
 
         def initialize(tag_name, text, tokens)

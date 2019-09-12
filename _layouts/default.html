@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
-  <head> 
+  <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        {%- seo -%} 
+        {%- seo -%}
         {% capture maincss %}{% include custom.scss %}{% endcapture %}
   </head>
 
@@ -13,11 +13,11 @@
       <style type="text/css">
         {{ maincss | scssify }}
       </style>
-    <div class="container">
-        <div class="column">
+    <div class="Main">
+        <div class="column Main__Info">
             <h1>Perú Top Coders</h1>
             <p>based on github stats</p>
-                
+
             <div class="contribute-button">
                 <a href="https://github.com/joelibaceta/top-coders-peru">
                 <svg viewBox="0 0 32.579 31.775" width="32px" height="32px">
@@ -27,7 +27,7 @@
                 </a>
             </div>
         </div>
-        <div class="column">
+        <div class="column Main__Content">
             {{ content }}
         </div>
     </div>
