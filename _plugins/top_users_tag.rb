@@ -27,7 +27,7 @@ module Jekyll
         end
 
         def countRepos(user)
-            uri = URI.parse("https://api.github.com/users/#{user}/repos?#{authorization_string}")
+            uri = URI.parse("https://api.github.com/users/#{user}/repos?#{authorization_string}&per_page=100")
 
             http = Net::HTTP.new(uri.host, uri.port)
             http.use_ssl = true
@@ -49,7 +49,7 @@ module Jekyll
         def countCommits(user)
             now = Time.new
             date_one_year_ago = "#{(now.year - 1).to_s}-#{now.month.to_s.rjust(2, '0')}-#{now.day.to_s.rjust(2, '0')}"
-            uri = URI.parse("https://api.github.com/search/commits?q=author:#{user} committer-date:>#{date_one_year_ago}&#{authorization_string}")
+            uri = URI.parse("https://api.github.com/search/commits?q=author:#{user} committer-date:>#{date_one_year_ago}&#{authorization_string}&per_page=100")
 
             http = Net::HTTP.new(uri.host, uri.port)
             http.use_ssl = true
