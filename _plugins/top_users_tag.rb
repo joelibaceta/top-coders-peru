@@ -39,9 +39,14 @@ module Jekyll
 
             repos = JSON.parse(response.body)
 
+            repos.each do |repo|
+                getTechnologies(user, repo["name"])
+            end
+
             repos = repos.select do | repo |
                 !repo["fork"]
             end
+            
 
             return repos.size
         end
@@ -75,6 +80,17 @@ module Jekyll
             end
             return counter
 
+        end
+
+        def getTechnologies(user, repo)
+            uri = URI.parse("https://api.github.com/repos/#{user}/#{repo}/languages?#{authorization_string}")
+            response = Net::HTTP.get_response(uri)
+            languages = JSON.parse(response.body)
+
+            languages.each do |language, lines|
+                counter = @technologies[language] || 0
+                @technologies[language] = (counter + 1 ) 
+            end
         end
 
         def getUserData(user)
@@ -153,14 +169,16 @@ module Jekyll
         end
 
         def render(context)
-            users = getTopUsersData
-            element = "<div class='UsersTableContainer'> <table>\n"
-            element += "<thead><th><td colspan='2'>User</td><td>Name</td><td>Email</td><td>Company</td><td>Followers</td><td>Commits</td><td>Stars</td><td>Repos</td><td>Issues/PR</td></th><thead>\n"
+            users, languages = getTopUsersData 
+            element = "<script> draw_languages_chart(" + languages.to_json + ") </script>\n"
+
+            element += "<div class='UsersTableContainer'> <table>\n"
+            element += "<thead><th><td>User</td><td>Info</td><td>Followers</td><td>Commits</td><td>Stars</td><td>Repos</td><td>Issues/PR</td></th><thead>\n"
             element += "<tbody>"
             users.each_with_index do |user, i|
                 element += "<tr><td>#{i + 1}</td>"
-                element += "<td><img class='User__image' src='#{user[:pic]}'></td>"
-                element += "<td><a href='#{user[:url]}'>#{user[:id]}</a></td><td>#{user[:name]}</td><td>#{user[:email]}</td><td>#{user[:company]}</td>"
+                element += "<td><img class='User__image' src='#{user[:pic]}'><br/><a href='#{user[:url]}'>#{user[:id]}</a></td>"
+                element += "<td><b>#{user[:name]}</b><br/>#{user[:email]}<br/><i>#{user[:company]}</i></td>"
                 element += "<td>#{user[:followers]}</td><td>#{user[:commits]}</td><td>#{user[:stars]}</td><td>#{user[:repos]}</td><td>#{user[:issues]}</td></tr>\n"
             end
             element += "</tbody>"
@@ -169,6 +187,7 @@ module Jekyll
 
         def initialize(tag_name, text, tokens)
             super
+            @technologies = Hash.new
         end
     end
 end

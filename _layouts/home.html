@@ -1,4 +1,63 @@
 ---
 layout: default
 ---
+
+
+<script>
+
+    function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+    }
+
+    function getColor(){ 
+        return "hsl(" + 360 * Math.random() + ',' +
+                (25 + 70 * Math.random()) + '%,' + 
+                (85 + 10 * Math.random()) + '%)'
+    }
+
+    
+
+
+    function draw_languages_chart(data) {
+
+
+        var keys = Object.keys(data); 
+        var labels = keys.map(function(v){ return v + " " + data[v] + "%" });
+        var colors = Array(10).fill().map(() => getColor())
+        
+        var data = keys.map(function(v) { return data[v]; });
+
+        var languagesData = {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: colors
+            }]
+        }
+        var options = {
+            title: {
+                display: true,
+                text: 'The top developers use:'
+            },
+            legend: {
+                    display: true,
+                    position: 'right'
+                }
+            };
+
+        var languagesChart = document.getElementById("languagesChart");
+
+        var pieChart = new Chart(languagesChart, {
+            type: 'pie',
+            data: languagesData,
+            options: options
+        });
+    }
+</script>
+
 {% top_users %}
