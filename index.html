@@ -526,21 +526,20 @@ table {
 
 /** Mixin for responsive design **/
 .UsersTableContainer {
-  max-width: 100%;
   overflow-x: auto; }
 
 .Main {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: column;
   /** Breakpoints based on Bootstrap4 **/ }
   @media (min-width: 1140px) {
     .Main {
       flex-direction: row; } }
   .Main__Info {
-    min-width: 250px; }
+    min-width: 250px;
+    width: 20%; }
   .Main__Content {
-    flex: 1;
     overflow-x: auto; }
 
 .User__image {
@@ -567,6 +566,14 @@ table {
     .contribute-button a svg {
       margin-right: 10px; }
 
+#flags {
+  display: flex;
+  justify-content: space-between; }
+
+@media (max-width: 900px) {
+  canvas {
+    display: none; } }
+
       </style>
     <div class="Main">
         <div class="column Main__Info">
@@ -583,98 +590,116 @@ table {
             </div>
         </div>
         <div class="column Main__Content">
-            <div class='UsersTableContainer'> <table>
-<thead><th><td colspan='2'>User</td><td>Name</td><td>Email</td><td>Company</td><td>Followers</td><td>Commits</td><td>Stars</td><td>Repos</td><td>Issues/PR</td></th><thead>
-<tbody><tr><td>1</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/1312018?v=4'></td><td><a href='https://github.com/sergiodxa'>sergiodxa</a></td><td>Sergio Xalambrí</td><td>hello@sergiodxa.com</td><td>@ableco</td><td>619</td><td>1215</td><td>1350</td><td>77</td><td>523</td></tr>
-<tr><td>2</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/611699?v=4'></td><td><a href='https://github.com/hpneo'>hpneo</a></td><td>Gustavo Leon</td><td>gmleonr@gmail.com</td><td>CodePicnic</td><td>325</td><td>25</td><td>7197</td><td>88</td><td>33</td></tr>
-<tr><td>3</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/833664?v=4'></td><td><a href='https://github.com/luismayta'>luismayta</a></td><td>L. Mayta</td><td>slovacus@gmail.com</td><td>SRE at @equipindustry</td><td>125</td><td>1253</td><td>33</td><td>78</td><td>1831</td></tr>
-<tr><td>4</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/864790?v=4'></td><td><a href='https://github.com/joelibaceta'>joelibaceta</a></td><td>Joel Ibaceta</td><td>mail@joelibaceta.com</td><td></td><td>162</td><td>5661</td><td>832</td><td>25</td><td>255</td></tr>
-<tr><td>5</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/14926587?v=4'></td><td><a href='https://github.com/giansalex'>giansalex</a></td><td>Giancarlos Salas</td><td>giansalex@gmail.com</td><td>IMM Corp</td><td>131</td><td>2336</td><td>294</td><td>87</td><td>224</td></tr>
-<tr><td>6</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/18302365?v=4'></td><td><a href='https://github.com/bregydoc'>bregydoc</a></td><td>Bregy Malpartida Ramos</td><td>bregy.malpartida@utec.edu.pe</td><td></td><td>41</td><td>3754</td><td>409</td><td>69</td><td>8</td></tr>
-<tr><td>7</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/1118135?v=4'></td><td><a href='https://github.com/joedayz'>joedayz</a></td><td>José Díaz</td><td>jamdiazdiaz@gmail.com</td><td>JOEDAYZ</td><td>419</td><td>13</td><td>129</td><td>68</td><td>25</td></tr>
-<tr><td>8</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/3131952?v=4'></td><td><a href='https://github.com/gcoronelc'>gcoronelc</a></td><td>Eric Gustavo Coronel Castillo</td><td>gcoronelc@gmail.com</td><td></td><td>148</td><td>627</td><td>55</td><td>99</td><td>0</td></tr>
-<tr><td>9</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/110297?v=4'></td><td><a href='https://github.com/lupomontero'>lupomontero</a></td><td>Lupo Montero</td><td>lupomontero@gmail.com</td><td>@Laboratoria @lima-js @mozillaperu </td><td>237</td><td>776</td><td>267</td><td>43</td><td>641</td></tr>
-<tr><td>10</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/300238?v=4'></td><td><a href='https://github.com/emedinaa'>emedinaa</a></td><td>Eduardo José Medina Alfaro</td><td>emedinaa@gmail.com</td><td>Mapsalud</td><td>259</td><td>188</td><td>229</td><td>70</td><td>120</td></tr>
-<tr><td>11</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/10574326?v=4'></td><td><a href='https://github.com/escueladigital'>escueladigital</a></td><td>EDteam</td><td></td><td>EDteam</td><td>576</td><td>32</td><td>394</td><td>17</td><td>112</td></tr>
-<tr><td>12</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/1152236?v=4'></td><td><a href='https://github.com/Rub21'>Rub21</a></td><td>Ruben Lopez M.</td><td>rub2106@gmail.com</td><td>DevSeed</td><td>57</td><td>420</td><td>44</td><td>68</td><td>618</td></tr>
-<tr><td>13</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/1197235?v=4'></td><td><a href='https://github.com/Xpktro'>Xpktro</a></td><td>Moisés Cachay Tello</td><td>hello@moises.dev</td><td>@lima-js</td><td>78</td><td>3538</td><td>66</td><td>41</td><td>18</td></tr>
-<tr><td>14</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/21107031?v=4'></td><td><a href='https://github.com/condef5'>condef5</a></td><td>Frank Davis Condezo Fabian</td><td>davis.con.fab@gmail.com</td><td>Space</td><td>35</td><td>1147</td><td>18</td><td>72</td><td>279</td></tr>
-<tr><td>15</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/6180701?v=4'></td><td><a href='https://github.com/jeqo'>jeqo</a></td><td>Jorge Quilcate Otoya</td><td>quilcate.jorge@gmail.com</td><td>@sysco-middleware </td><td>70</td><td>741</td><td>133</td><td>75</td><td>222</td></tr>
-<tr><td>16</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/3419766?v=4'></td><td><a href='https://github.com/colemancda'>colemancda</a></td><td>Alsey Coleman Miller</td><td>alseycmiller@gmail.com</td><td></td><td>280</td><td>1171</td><td>699</td><td>7</td><td>526</td></tr>
-<tr><td>17</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/18385321?v=4'></td><td><a href='https://github.com/dantehemerson'>dantehemerson</a></td><td>Dante Calderón</td><td>mail@dantecalderon.dev</td><td>@dantecalderon</td><td>37</td><td>1823</td><td>38</td><td>59</td><td>189</td></tr>
-<tr><td>18</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/10764912?v=4'></td><td><a href='https://github.com/michellesegv'>michellesegv</a></td><td>Michelle Seguil</td><td>michelle@laboratoria.la</td><td>@Laboratoria </td><td>79</td><td>0</td><td>12</td><td>85</td><td>18</td></tr>
-<tr><td>19</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/2623671?v=4'></td><td><a href='https://github.com/jansanchez'>jansanchez</a></td><td>Jan Sanchez</td><td>joejansanchez@gmail.com</td><td>FrontEnd Labs</td><td>125</td><td>13</td><td>155</td><td>69</td><td>61</td></tr>
-<tr><td>20</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/25912510?v=4'></td><td><a href='https://github.com/MaiaRojas'>MaiaRojas</a></td><td>Maia Rojas</td><td></td><td>Laboratoria</td><td>34</td><td>34</td><td>5</td><td>82</td><td>66</td></tr>
-<tr><td>21</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/1000404?v=4'></td><td><a href='https://github.com/chris-ramon'>chris-ramon</a></td><td>Chris Ramón</td><td>rchristian.ramon@gmail.com</td><td></td><td>123</td><td>62</td><td>162</td><td>54</td><td>234</td></tr>
-<tr><td>22</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/9284690?v=4'></td><td><a href='https://github.com/ivandevp'>ivandevp</a></td><td>Ivan Medina</td><td>medinadiazivan@gmail.com</td><td>Laboratoria</td><td>192</td><td>136</td><td>39</td><td>38</td><td>303</td></tr>
-<tr><td>23</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/22333076?v=4'></td><td><a href='https://github.com/enzoftware'>enzoftware</a></td><td>Enzo Lizama Paredes </td><td>lizama.enzo@gmail.com</td><td>Wibo</td><td>110</td><td>856</td><td>93</td><td>45</td><td>161</td></tr>
-<tr><td>24</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/4262050?v=4'></td><td><a href='https://github.com/bjrmatos'>bjrmatos</a></td><td>BJR Matos</td><td>bjrmatos@gmail.com</td><td></td><td>107</td><td>1379</td><td>298</td><td>25</td><td>293</td></tr>
-<tr><td>25</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/25906896?v=4'></td><td><a href='https://github.com/RuthSalvador'>RuthSalvador</a></td><td>Ruth Abigail Salvador Zorrilla</td><td></td><td></td><td>45</td><td>55</td><td>3</td><td>70</td><td>117</td></tr>
-<tr><td>26</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/387111?v=4'></td><td><a href='https://github.com/PuercoPop'>PuercoPop</a></td><td>Javier Olaechea</td><td>pirata@gmail.com</td><td>@remotelock</td><td>162</td><td>79</td><td>83</td><td>30</td><td>446</td></tr>
-<tr><td>27</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/12245094?v=4'></td><td><a href='https://github.com/parakawa'>parakawa</a></td><td>Patricia Arakawa Yagi</td><td>paty.arakawa@gmail.com</td><td></td><td>73</td><td>47</td><td>15</td><td>68</td><td>5</td></tr>
-<tr><td>28</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/710117?v=4'></td><td><a href='https://github.com/carlosp420'>carlosp420</a></td><td>Carlos Peña</td><td>mycalesis@gmail.com</td><td></td><td>58</td><td>0</td><td>29</td><td>38</td><td>572</td></tr>
-<tr><td>29</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/4564870?v=4'></td><td><a href='https://github.com/alejandrogarciasalas'>alejandrogarciasalas</a></td><td>Alejandro García Salas</td><td>algarcia@berkeley.edu</td><td></td><td>107</td><td>184</td><td>9</td><td>51</td><td>37</td></tr>
-<tr><td>30</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/19534?v=4'></td><td><a href='https://github.com/xenda'>xenda</a></td><td>Xenda</td><td>info@xendacentral.com</td><td>Xenda</td><td>78</td><td>0</td><td>83</td><td>56</td><td>30</td></tr>
-<tr><td>31</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/38053554?v=4'></td><td><a href='https://github.com/MineiToshio'>MineiToshio</a></td><td>Toshio Minei</td><td></td><td></td><td>140</td><td>89</td><td>360</td><td>36</td><td>0</td></tr>
-<tr><td>32</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/1221474?v=4'></td><td><a href='https://github.com/lavaldi'>lavaldi</a></td><td>Claudia Valdivieso</td><td>claumavaldivieso@gmail.com</td><td>@ableco</td><td>45</td><td>125</td><td>17</td><td>51</td><td>33</td></tr>
-<tr><td>33</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/2278766?v=4'></td><td><a href='https://github.com/jesulink2514'>jesulink2514</a></td><td>Jesus Angulo</td><td>jesus.angulo@outlook.com</td><td></td><td>46</td><td>91</td><td>39</td><td>50</td><td>29</td></tr>
-<tr><td>34</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/129109?v=4'></td><td><a href='https://github.com/snahider'>snahider</a></td><td>Snahider</td><td>snahider@gmail.com</td><td>Kleer</td><td>45</td><td>6</td><td>45</td><td>52</td><td>18</td></tr>
-<tr><td>35</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/6331999?v=4'></td><td><a href='https://github.com/thavoo'>thavoo</a></td><td>Gustavo Herrera</td><td>gustavoh.2312@gmail.com</td><td>Autonomo</td><td>45</td><td>79</td><td>7</td><td>51</td><td>21</td></tr>
-<tr><td>36</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/6628637?v=4'></td><td><a href='https://github.com/ghondar'>ghondar</a></td><td>Anthony Bryan Gavilan Vinces</td><td>abgv9221@gmail.com</td><td>enova agency</td><td>58</td><td>209</td><td>186</td><td>44</td><td>24</td></tr>
-<tr><td>37</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/729789?v=4'></td><td><a href='https://github.com/andru255'>andru255</a></td><td>Andrés Muñoz</td><td>andru255@gmail.com</td><td>@frontend-labs </td><td>119</td><td>73</td><td>33</td><td>34</td><td>88</td></tr>
-<tr><td>38</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/4898256?v=4'></td><td><a href='https://github.com/diegoveloper'>diegoveloper</a></td><td>Diego Velásquez López</td><td></td><td></td><td>177</td><td>305</td><td>730</td><td>13</td><td>46</td></tr>
-<tr><td>39</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/325780?v=4'></td><td><a href='https://github.com/jerson'>jerson</a></td><td>Gerson Alexander Pardo Gamez</td><td></td><td></td><td>61</td><td>112</td><td>72</td><td>40</td><td>98</td></tr>
-<tr><td>40</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/4976355?v=4'></td><td><a href='https://github.com/zodiacfireworks'>zodiacfireworks</a></td><td>Martín Josemaría</td><td></td><td>@softbutterfly, @PCPUNMSM, @HackSpacePeru </td><td>64</td><td>124</td><td>26</td><td>44</td><td>15</td></tr>
-<tr><td>41</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/737948?v=4'></td><td><a href='https://github.com/mario21ic'>mario21ic</a></td><td>Mario J. Inga Cahuana</td><td>mario21ic@gmail.com</td><td></td><td>61</td><td>570</td><td>21</td><td>34</td><td>57</td></tr>
-<tr><td>42</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/2940509?v=4'></td><td><a href='https://github.com/aragonc'>aragonc</a></td><td>Alex Aragon</td><td>aragcar@gmail.com</td><td>@beeznest </td><td>44</td><td>826</td><td>0</td><td>30</td><td>73</td></tr>
-<tr><td>43</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/7736802?v=4'></td><td><a href='https://github.com/t-edson'>t-edson</a></td><td>Tito Hinostroza</td><td></td><td></td><td>41</td><td>200</td><td>206</td><td>42</td><td>4</td></tr>
-<tr><td>44</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/155753?v=4'></td><td><a href='https://github.com/raymismalca'>raymismalca</a></td><td>Raymi Saldomando</td><td>raymi15@gmail.com</td><td></td><td>97</td><td>1</td><td>10</td><td>38</td><td>5</td></tr>
-<tr><td>45</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/1231888?v=4'></td><td><a href='https://github.com/devniel'>devniel</a></td><td>Daniel Flores</td><td>dnielfs@gmail.com</td><td>IBM</td><td>38</td><td>77</td><td>21</td><td>44</td><td>40</td></tr>
-<tr><td>46</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/501129?v=4'></td><td><a href='https://github.com/giancorzo'>giancorzo</a></td><td>Giancarlo Corzo</td><td>gian.corzo@gmail.com</td><td>@culqi</td><td>100</td><td>59</td><td>11</td><td>26</td><td>124</td></tr>
-<tr><td>47</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/4174791?v=4'></td><td><a href='https://github.com/KattyaCuevas'>KattyaCuevas</a></td><td>Kattya Cuevas</td><td>kattya.cuevas@gmail.com</td><td>@ableco</td><td>92</td><td>166</td><td>2</td><td>28</td><td>75</td></tr>
-<tr><td>48</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/1582129?v=4'></td><td><a href='https://github.com/edutrul'>edutrul</a></td><td>Eduardo Telaya</td><td>luis.eduardo.telaya@gmail.com</td><td></td><td>47</td><td>103</td><td>27</td><td>34</td><td>82</td></tr>
-<tr><td>49</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/1095778?v=4'></td><td><a href='https://github.com/FraGoTe'>FraGoTe</a></td><td>Francis Gonzales</td><td>fgonzalestello91@gmail.com</td><td></td><td>47</td><td>61</td><td>37</td><td>28</td><td>201</td></tr>
-<tr><td>50</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/8517182?v=4'></td><td><a href='https://github.com/lalogf'>lalogf</a></td><td>Lalo Gonzalez</td><td>lalogf@gmail.com</td><td>@Laboratoria </td><td>71</td><td>28</td><td>2</td><td>33</td><td>50</td></tr>
-<tr><td>51</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/1008868?v=4'></td><td><a href='https://github.com/apiconz'>apiconz</a></td><td>Armando Picón (@devpicon / @apiconz)</td><td>apiconz@gmail.com</td><td>Freelance</td><td>40</td><td>0</td><td>3</td><td>41</td><td>2</td></tr>
-<tr><td>52</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/31000?v=4'></td><td><a href='https://github.com/jpscaletti'>jpscaletti</a></td><td>Juan-Pablo Scaletti</td><td>juanpablo@jpscaletti.com</td><td></td><td>90</td><td>263</td><td>277</td><td>22</td><td>45</td></tr>
-<tr><td>53</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/3421560?v=4'></td><td><a href='https://github.com/lizzie136'>lizzie136</a></td><td>Elizabeth Portilla</td><td></td><td>@Laboratoria </td><td>88</td><td>81</td><td>7</td><td>26</td><td>76</td></tr>
-<tr><td>54</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/223763?v=4'></td><td><a href='https://github.com/alfredopalhares'>alfredopalhares</a></td><td>Alfredo Palhares</td><td>alfredo@palhares.me</td><td>Prozis</td><td>54</td><td>42</td><td>369</td><td>18</td><td>232</td></tr>
-<tr><td>55</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/59393?v=4'></td><td><a href='https://github.com/jjdelc'>jjdelc</a></td><td>Jj</td><td></td><td>You</td><td>34</td><td>76</td><td>51</td><td>27</td><td>183</td></tr>
-<tr><td>56</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/997601?v=4'></td><td><a href='https://github.com/PedroCarrillo'>PedroCarrillo</a></td><td>Pedro Carrillo</td><td>carrillochero6@gmail.com</td><td></td><td>68</td><td>0</td><td>125</td><td>26</td><td>92</td></tr>
-<tr><td>57</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/1113372?v=4'></td><td><a href='https://github.com/cpinan'>cpinan</a></td><td>Carlos Eduardo Piñán Indacochea</td><td>carlos.pinan@gmail.com</td><td>Belatrix</td><td>71</td><td>22</td><td>107</td><td>30</td><td>5</td></tr>
-<tr><td>58</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/21283014?v=4'></td><td><a href='https://github.com/carlosal1015'>carlosal1015</a></td><td>Oromion</td><td>caznaranl@uni.pe</td><td>National University of Engineering</td><td>64</td><td>422</td><td>18</td><td>24</td><td>22</td></tr>
-<tr><td>59</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/20880980?v=4'></td><td><a href='https://github.com/JoshDev1205'>JoshDev1205</a></td><td>Josh Ospina Tafur</td><td>Josh.999126@gmail.com</td><td></td><td>46</td><td>80</td><td>9</td><td>32</td><td>23</td></tr>
-<tr><td>60</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/9372893?v=4'></td><td><a href='https://github.com/saintplay'>saintplay</a></td><td>Diego Jara</td><td>saintplay96@gmail.com</td><td>SaintPlay</td><td>37</td><td>32</td><td>352</td><td>25</td><td>106</td></tr>
-<tr><td>61</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/10110322?v=4'></td><td><a href='https://github.com/gitHAMP'>gitHAMP</a></td><td>Henry Antonio Mendoza Puerta.</td><td></td><td></td><td>58</td><td>69</td><td>9</td><td>31</td><td>1</td></tr>
-<tr><td>62</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/1175372?v=4'></td><td><a href='https://github.com/stephfz'>stephfz</a></td><td>Stephanie Frias</td><td></td><td></td><td>42</td><td>6</td><td>4</td><td>34</td><td>9</td></tr>
-<tr><td>63</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/211721?v=4'></td><td><a href='https://github.com/merunga'>merunga</a></td><td>Mariano Crowe</td><td></td><td>@lastraperas @escuelab </td><td>48</td><td>146</td><td>30</td><td>23</td><td>125</td></tr>
-<tr><td>64</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/321499?v=4'></td><td><a href='https://github.com/puentesarrin'>puentesarrin</a></td><td>Jorge Puente-Sarrín</td><td>jorge@puentesarr.in</td><td>@RebelMouseTeam </td><td>38</td><td>12</td><td>165</td><td>12</td><td>349</td></tr>
-<tr><td>65</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/4896200?v=4'></td><td><a href='https://github.com/eyllanesc'>eyllanesc</a></td><td>Edwin Christian Yllanes Cucho</td><td>e.yllanescucho@gmail.com</td><td></td><td>90</td><td>190</td><td>151</td><td>18</td><td>21</td></tr>
-<tr><td>66</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/12788039?v=4'></td><td><a href='https://github.com/SaulMontoya'>SaulMontoya</a></td><td>Saul Montoya</td><td>saulmontoya@gidahatari.com</td><td>Hatari Labs</td><td>56</td><td>0</td><td>33</td><td>28</td><td>1</td></tr>
-<tr><td>67</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/207914?v=4'></td><td><a href='https://github.com/texai'>texai</a></td><td>Ernesto Anaya</td><td>ernestex@gmail.com</td><td></td><td>36</td><td>6</td><td>15</td><td>31</td><td>6</td></tr>
-<tr><td>68</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/16768318?v=4'></td><td><a href='https://github.com/csaybar'>csaybar</a></td><td>Cesar Luis Aybar Camacho</td><td>csaybar@gmail.com</td><td>Freelance</td><td>36</td><td>449</td><td>54</td><td>22</td><td>18</td></tr>
-<tr><td>69</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/2893979?v=4'></td><td><a href='https://github.com/erickorlando'>erickorlando</a></td><td>Erick Orlando</td><td>evelascom@frameworkperu.com</td><td>Framework Perú</td><td>54</td><td>41</td><td>5</td><td>24</td><td>69</td></tr>
-<tr><td>70</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/7488739?v=4'></td><td><a href='https://github.com/vikyale'>vikyale</a></td><td>Victoria Ubaldo</td><td></td><td>@gdgwlima </td><td>34</td><td>7</td><td>2</td><td>31</td><td>1</td></tr>
-<tr><td>71</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/4109044?v=4'></td><td><a href='https://github.com/brayancruces'>brayancruces</a></td><td>Brayan Cruces</td><td></td><td>Culqi (@culqi)</td><td>84</td><td>41</td><td>4</td><td>19</td><td>48</td></tr>
-<tr><td>72</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/98363?v=4'></td><td><a href='https://github.com/ptn'>ptn</a></td><td>Pablo Torres</td><td>tn.pablo@gmail.com</td><td></td><td>64</td><td>0</td><td>34</td><td>23</td><td>27</td></tr>
-<tr><td>73</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/6650?v=4'></td><td><a href='https://github.com/gnrfan'>gnrfan</a></td><td>Antonio Ognio</td><td>antonio@ognio.com</td><td>Bit Zeppelin S.A.C.</td><td>67</td><td>3</td><td>51</td><td>20</td><td>29</td></tr>
-<tr><td>74</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/373010?v=4'></td><td><a href='https://github.com/linoespinoza'>linoespinoza</a></td><td>Lino Espinoza</td><td>woztheman@gmail.com</td><td>Entel Perú</td><td>35</td><td>1</td><td>10</td><td>26</td><td>1</td></tr>
-<tr><td>75</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/2661653?v=4'></td><td><a href='https://github.com/JohnProg'>JohnProg</a></td><td>John Paul</td><td>john.cfmr.2009@gmail.com</td><td></td><td>43</td><td>30</td><td>88</td><td>19</td><td>14</td></tr>
-<tr><td>76</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/5331187?v=4'></td><td><a href='https://github.com/Dedal0'>Dedal0</a></td><td>Camilo Galdos AkA Dedalo</td><td></td><td></td><td>48</td><td>0</td><td>26</td><td>18</td><td>15</td></tr>
-<tr><td>77</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/10253167?v=4'></td><td><a href='https://github.com/godofredoninja'>godofredoninja</a></td><td>GodoFredo</td><td></td><td>GodoFredo.Ninja</td><td>39</td><td>127</td><td>497</td><td>11</td><td>6</td></tr>
-<tr><td>78</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/547722?v=4'></td><td><a href='https://github.com/juaneladio'>juaneladio</a></td><td>Juan Eladio Sánchez Rosas</td><td></td><td>Ensoluciona</td><td>60</td><td>0</td><td>32</td><td>13</td><td>63</td></tr>
-<tr><td>79</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/3279901?v=4'></td><td><a href='https://github.com/asullom'>asullom</a></td><td>Angel Sullon</td><td>asullom@gmail.com</td><td></td><td>39</td><td>15</td><td>1</td><td>17</td><td>3</td></tr>
-<tr><td>80</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/10201025?v=4'></td><td><a href='https://github.com/rafaesc'>rafaesc</a></td><td>Rafael Escala</td><td>rafaesc92@gmail.com</td><td></td><td>43</td><td>4</td><td>139</td><td>10</td><td>57</td></tr>
-<tr><td>81</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/134428?v=4'></td><td><a href='https://github.com/davux'>davux</a></td><td>David Ammouial</td><td></td><td>everis</td><td>44</td><td>89</td><td>18</td><td>8</td><td>56</td></tr>
-<tr><td>82</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/1261833?v=4'></td><td><a href='https://github.com/kandra'>kandra</a></td><td>Karen Da Cruz</td><td>me@karendacruz.com</td><td>@ableco </td><td>38</td><td>15</td><td>0</td><td>11</td><td>13</td></tr>
-<tr><td>83</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/20606400?v=4'></td><td><a href='https://github.com/Jhongesell'>Jhongesell</a></td><td>Jhon Gesell</td><td>unmsm182@gmail.com</td><td>Instituto Geofísico del Perú</td><td>45</td><td>40</td><td>1</td><td>6</td><td>2</td></tr>
-<tr><td>84</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/166259?v=4'></td><td><a href='https://github.com/alessapereyra'>alessapereyra</a></td><td>Alessandra Pereyra Rabanal</td><td></td><td>Xenda</td><td>54</td><td>0</td><td>5</td><td>5</td><td>3</td></tr>
-<tr><td>85</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/32573680?v=4'></td><td><a href='https://github.com/franciscorosales-marticorena'>franciscorosales-marticorena</a></td><td>Francisco Rosales Marticorena</td><td></td><td>CIUP</td><td>50</td><td>92</td><td>0</td><td>3</td><td>0</td></tr>
-<tr><td>86</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/5867015?v=4'></td><td><a href='https://github.com/mizhac'>mizhac</a></td><td>Cristhian Huertos</td><td>cristhian@krowdy.co</td><td>@Krowdy </td><td>39</td><td>16</td><td>0</td><td>5</td><td>10</td></tr>
-<tr><td>87</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/3508717?v=4'></td><td><a href='https://github.com/C-Lara'>C-Lara</a></td><td>Cesar Lara Avila</td><td></td><td></td><td>49</td><td>24</td><td>0</td><td>3</td><td>4</td></tr>
-<tr><td>88</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/122279?v=4'></td><td><a href='https://github.com/breno'>breno</a></td><td>Breno Colom</td><td></td><td>Scrapinghub</td><td>44</td><td>0</td><td>3</td><td>3</td><td>9</td></tr>
-<tr><td>89</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/3245450?v=4'></td><td><a href='https://github.com/Edwinpgm'>Edwinpgm</a></td><td>Edwin Gonzales</td><td>edwinpgm@gmail.com</td><td></td><td>42</td><td>0</td><td>0</td><td>3</td><td>2</td></tr>
-<tr><td>90</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/976556?v=4'></td><td><a href='https://github.com/jonathance'>jonathance</a></td><td>Jonathan Chavez</td><td></td><td></td><td>42</td><td>2</td><td>1</td><td>1</td><td>0</td></tr>
+            <script>
+
+    function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+    }
+
+    function getColor(){ 
+        return "hsl(" + 360 * Math.random() + ',' +
+                (25 + 70 * Math.random()) + '%,' + 
+                (85 + 10 * Math.random()) + '%)'
+    }
+
+    
+
+
+    function draw_languages_chart(data) {
+
+
+        var keys = Object.keys(data); 
+        var labels = keys.map(function(v){ return v + " " + data[v] + "%" });
+        var colors = Array(10).fill().map(() => getColor())
+        
+        var data = keys.map(function(v) { return data[v]; });
+
+        var languagesData = {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: colors
+            }]
+        }
+        var options = {
+            title: {
+                display: true,
+                text: 'The top developers use:'
+            },
+            legend: {
+                    display: true,
+                    position: 'right'
+                }
+            };
+
+        var languagesChart = document.getElementById("languagesChart");
+
+        var pieChart = new Chart(languagesChart, {
+            type: 'pie',
+            data: languagesData,
+            options: options
+        });
+    }
+</script>
+
+<script> draw_languages_chart({"JavaScript":24.9,"HTML":17.89,"CSS":15.67,"Java":8.85,"Shell":8.85,"Python":7.12,"Ruby":7.11,"Makefile":4.43,"Objective-C":2.62,"PHP":2.57}) </script>
+<div class='UsersTableContainer'> <table>
+<thead><th><td>User</td><td>Info</td><td>Followers</td><td>Commits</td><td>Stars</td><td>Repos</td><td>Issues/PR</td></th><thead>
+<tbody><tr><td>1</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/1312018?v=4'><br/><a href='https://github.com/sergiodxa'>sergiodxa</a></td><td><b>Sergio Xalambrí</b><br/>hello@sergiodxa.com<br/><i>@ableco</i></td><td>619</td><td>1217</td><td>1350</td><td>77</td><td>523</td></tr>
+<tr><td>2</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/611699?v=4'><br/><a href='https://github.com/hpneo'>hpneo</a></td><td><b>Gustavo Leon</b><br/>gmleonr@gmail.com<br/><i>CodePicnic</i></td><td>325</td><td>25</td><td>7198</td><td>88</td><td>33</td></tr>
+<tr><td>3</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/833664?v=4'><br/><a href='https://github.com/luismayta'>luismayta</a></td><td><b>L. Mayta</b><br/>slovacus@gmail.com<br/><i>SRE at @equipindustry</i></td><td>126</td><td>1252</td><td>33</td><td>78</td><td>1837</td></tr>
+<tr><td>4</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/864790?v=4'><br/><a href='https://github.com/joelibaceta'>joelibaceta</a></td><td><b>Joel Ibaceta</b><br/>mail@joelibaceta.com<br/><i></i></td><td>165</td><td>5672</td><td>834</td><td>25</td><td>257</td></tr>
+<tr><td>5</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/14926587?v=4'><br/><a href='https://github.com/giansalex'>giansalex</a></td><td><b>Giancarlos Salas</b><br/>giansalex@gmail.com<br/><i>IMM Corp</i></td><td>131</td><td>2334</td><td>294</td><td>87</td><td>224</td></tr>
+<tr><td>6</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/1118135?v=4'><br/><a href='https://github.com/joedayz'>joedayz</a></td><td><b>José Díaz</b><br/>jamdiazdiaz@gmail.com<br/><i>JOEDAYZ</i></td><td>419</td><td>13</td><td>129</td><td>68</td><td>25</td></tr>
+<tr><td>7</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/3131952?v=4'><br/><a href='https://github.com/gcoronelc'>gcoronelc</a></td><td><b>Eric Gustavo Coronel Castillo</b><br/>gcoronelc@gmail.com<br/><i></i></td><td>148</td><td>620</td><td>55</td><td>99</td><td>0</td></tr>
+<tr><td>8</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/110297?v=4'><br/><a href='https://github.com/lupomontero'>lupomontero</a></td><td><b>Lupo Montero</b><br/>lupomontero@gmail.com<br/><i>@Laboratoria @lima-js @mozillaperu </i></td><td>237</td><td>776</td><td>267</td><td>43</td><td>643</td></tr>
+<tr><td>9</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/300238?v=4'><br/><a href='https://github.com/emedinaa'>emedinaa</a></td><td><b>Eduardo José Medina Alfaro</b><br/>emedinaa@gmail.com<br/><i>Mapsalud</i></td><td>260</td><td>188</td><td>229</td><td>70</td><td>120</td></tr>
+<tr><td>10</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/10574326?v=4'><br/><a href='https://github.com/escueladigital'>escueladigital</a></td><td><b>EDteam</b><br/><br/><i>EDteam</i></td><td>576</td><td>32</td><td>394</td><td>17</td><td>112</td></tr>
+<tr><td>11</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/1152236?v=4'><br/><a href='https://github.com/Rub21'>Rub21</a></td><td><b>Ruben Lopez M.</b><br/>rub2106@gmail.com<br/><i>DevSeed</i></td><td>57</td><td>420</td><td>44</td><td>68</td><td>618</td></tr>
+<tr><td>12</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/1197235?v=4'><br/><a href='https://github.com/Xpktro'>Xpktro</a></td><td><b>Moisés Cachay Tello</b><br/>hello@moises.dev<br/><i>@lima-js</i></td><td>78</td><td>3531</td><td>66</td><td>41</td><td>18</td></tr>
+<tr><td>13</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/6180701?v=4'><br/><a href='https://github.com/jeqo'>jeqo</a></td><td><b>Jorge Quilcate Otoya</b><br/>quilcate.jorge@gmail.com<br/><i>@sysco-middleware </i></td><td>70</td><td>741</td><td>133</td><td>75</td><td>222</td></tr>
+<tr><td>14</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/3419766?v=4'><br/><a href='https://github.com/colemancda'>colemancda</a></td><td><b>Alsey Coleman Miller</b><br/>alseycmiller@gmail.com<br/><i></i></td><td>280</td><td>1177</td><td>699</td><td>7</td><td>526</td></tr>
+<tr><td>15</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/10764912?v=4'><br/><a href='https://github.com/michellesegv'>michellesegv</a></td><td><b>Michelle Seguil</b><br/>michelle@laboratoria.la<br/><i>@Laboratoria </i></td><td>79</td><td>0</td><td>12</td><td>85</td><td>18</td></tr>
+<tr><td>16</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/2623671?v=4'><br/><a href='https://github.com/jansanchez'>jansanchez</a></td><td><b>Jan Sanchez</b><br/>joejansanchez@gmail.com<br/><i>FrontEnd Labs</i></td><td>125</td><td>13</td><td>155</td><td>69</td><td>61</td></tr>
+<tr><td>17</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/1000404?v=4'><br/><a href='https://github.com/chris-ramon'>chris-ramon</a></td><td><b>Chris Ramón</b><br/>rchristian.ramon@gmail.com<br/><i></i></td><td>123</td><td>55</td><td>162</td><td>54</td><td>234</td></tr>
+<tr><td>18</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/9284690?v=4'><br/><a href='https://github.com/ivandevp'>ivandevp</a></td><td><b>Ivan Medina</b><br/>medinadiazivan@gmail.com<br/><i>Laboratoria</i></td><td>192</td><td>136</td><td>39</td><td>38</td><td>303</td></tr>
+<tr><td>19</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/22333076?v=4'><br/><a href='https://github.com/enzoftware'>enzoftware</a></td><td><b>Enzo Lizama Paredes </b><br/>lizama.enzo@gmail.com<br/><i>Wibo</i></td><td>110</td><td>852</td><td>93</td><td>45</td><td>161</td></tr>
+<tr><td>20</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/4262050?v=4'><br/><a href='https://github.com/bjrmatos'>bjrmatos</a></td><td><b>BJR Matos</b><br/>bjrmatos@gmail.com<br/><i></i></td><td>107</td><td>1379</td><td>298</td><td>25</td><td>293</td></tr>
+<tr><td>21</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/387111?v=4'><br/><a href='https://github.com/PuercoPop'>PuercoPop</a></td><td><b>Javier Olaechea</b><br/>pirata@gmail.com<br/><i>@remotelock</i></td><td>162</td><td>79</td><td>83</td><td>30</td><td>446</td></tr>
+<tr><td>22</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/12245094?v=4'><br/><a href='https://github.com/parakawa'>parakawa</a></td><td><b>Patricia Arakawa Yagi</b><br/>paty.arakawa@gmail.com<br/><i></i></td><td>73</td><td>47</td><td>15</td><td>68</td><td>5</td></tr>
+<tr><td>23</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/710117?v=4'><br/><a href='https://github.com/carlosp420'>carlosp420</a></td><td><b>Carlos Peña</b><br/>mycalesis@gmail.com<br/><i></i></td><td>58</td><td>0</td><td>29</td><td>38</td><td>572</td></tr>
+<tr><td>24</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/4564870?v=4'><br/><a href='https://github.com/alejandrogarciasalas'>alejandrogarciasalas</a></td><td><b>Alejandro García Salas</b><br/>algarcia@berkeley.edu<br/><i></i></td><td>107</td><td>184</td><td>9</td><td>51</td><td>37</td></tr>
+<tr><td>25</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/19534?v=4'><br/><a href='https://github.com/xenda'>xenda</a></td><td><b>Xenda</b><br/>info@xendacentral.com<br/><i>Xenda</i></td><td>78</td><td>0</td><td>83</td><td>56</td><td>30</td></tr>
+<tr><td>26</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/38053554?v=4'><br/><a href='https://github.com/MineiToshio'>MineiToshio</a></td><td><b>Toshio Minei</b><br/><br/><i></i></td><td>141</td><td>88</td><td>361</td><td>36</td><td>0</td></tr>
+<tr><td>27</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/6628637?v=4'><br/><a href='https://github.com/ghondar'>ghondar</a></td><td><b>Anthony Bryan Gavilan Vinces</b><br/>abgv9221@gmail.com<br/><i></i></td><td>58</td><td>209</td><td>186</td><td>44</td><td>24</td></tr>
+<tr><td>28</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/729789?v=4'><br/><a href='https://github.com/andru255'>andru255</a></td><td><b>Andrés Muñoz</b><br/>andru255@gmail.com<br/><i>@frontend-labs </i></td><td>119</td><td>73</td><td>33</td><td>34</td><td>88</td></tr>
+<tr><td>29</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/4898256?v=4'><br/><a href='https://github.com/diegoveloper'>diegoveloper</a></td><td><b>Diego Velásquez López</b><br/><br/><i></i></td><td>177</td><td>305</td><td>730</td><td>13</td><td>46</td></tr>
+<tr><td>30</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/325780?v=4'><br/><a href='https://github.com/jerson'>jerson</a></td><td><b>Gerson Alexander Pardo Gamez</b><br/><br/><i></i></td><td>61</td><td>112</td><td>72</td><td>40</td><td>98</td></tr>
+<tr><td>31</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/4976355?v=4'><br/><a href='https://github.com/zodiacfireworks'>zodiacfireworks</a></td><td><b>Martín Josemaría</b><br/><br/><i>@softbutterfly, @PCPUNMSM, @HackSpacePeru </i></td><td>64</td><td>126</td><td>26</td><td>44</td><td>15</td></tr>
+<tr><td>32</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/737948?v=4'><br/><a href='https://github.com/mario21ic'>mario21ic</a></td><td><b>Mario J. Inga Cahuana</b><br/>mario21ic@gmail.com<br/><i></i></td><td>61</td><td>570</td><td>21</td><td>34</td><td>57</td></tr>
+<tr><td>33</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/155753?v=4'><br/><a href='https://github.com/raymismalca'>raymismalca</a></td><td><b>Raymi Saldomando</b><br/>raymi15@gmail.com<br/><i></i></td><td>97</td><td>1</td><td>10</td><td>38</td><td>5</td></tr>
+<tr><td>34</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/501129?v=4'><br/><a href='https://github.com/giancorzo'>giancorzo</a></td><td><b>Giancarlo Corzo</b><br/>gian.corzo@gmail.com<br/><i>@culqi</i></td><td>100</td><td>59</td><td>11</td><td>26</td><td>124</td></tr>
+<tr><td>35</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/4174791?v=4'><br/><a href='https://github.com/KattyaCuevas'>KattyaCuevas</a></td><td><b>Kattya Cuevas</b><br/>kattya.cuevas@gmail.com<br/><i>@ableco</i></td><td>92</td><td>166</td><td>2</td><td>28</td><td>75</td></tr>
+<tr><td>36</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/8517182?v=4'><br/><a href='https://github.com/lalogf'>lalogf</a></td><td><b>Lalo Gonzalez</b><br/>lalogf@gmail.com<br/><i>@Laboratoria </i></td><td>71</td><td>28</td><td>2</td><td>33</td><td>50</td></tr>
+<tr><td>37</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/31000?v=4'><br/><a href='https://github.com/jpscaletti'>jpscaletti</a></td><td><b>Juan-Pablo Scaletti</b><br/>juanpablo@jpscaletti.com<br/><i></i></td><td>90</td><td>263</td><td>277</td><td>22</td><td>45</td></tr>
+<tr><td>38</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/3421560?v=4'><br/><a href='https://github.com/lizzie136'>lizzie136</a></td><td><b>Elizabeth Portilla</b><br/><br/><i>@Laboratoria </i></td><td>88</td><td>81</td><td>7</td><td>26</td><td>76</td></tr>
+<tr><td>39</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/223763?v=4'><br/><a href='https://github.com/alfredopalhares'>alfredopalhares</a></td><td><b>Alfredo Palhares</b><br/>alfredo@palhares.me<br/><i>Prozis</i></td><td>54</td><td>42</td><td>369</td><td>18</td><td>232</td></tr>
+<tr><td>40</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/997601?v=4'><br/><a href='https://github.com/PedroCarrillo'>PedroCarrillo</a></td><td><b>Pedro Carrillo</b><br/>carrillochero6@gmail.com<br/><i></i></td><td>68</td><td>0</td><td>125</td><td>26</td><td>92</td></tr>
+<tr><td>41</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/1113372?v=4'><br/><a href='https://github.com/cpinan'>cpinan</a></td><td><b>Carlos Eduardo Piñán Indacochea</b><br/>carlos.pinan@gmail.com<br/><i>Belatrix</i></td><td>71</td><td>24</td><td>107</td><td>30</td><td>5</td></tr>
+<tr><td>42</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/10110322?v=4'><br/><a href='https://github.com/gitHAMP'>gitHAMP</a></td><td><b>Henry Antonio Mendoza Puerta.</b><br/><br/><i></i></td><td>60</td><td>76</td><td>10</td><td>32</td><td>1</td></tr>
+<tr><td>43</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/21283014?v=4'><br/><a href='https://github.com/carlosal1015'>carlosal1015</a></td><td><b>Oromion</b><br/>caznaranl@uni.pe<br/><i>National University of Engineering</i></td><td>64</td><td>419</td><td>18</td><td>24</td><td>22</td></tr>
+<tr><td>44</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/4896200?v=4'><br/><a href='https://github.com/eyllanesc'>eyllanesc</a></td><td><b>Edwin Christian Yllanes Cucho</b><br/>e.yllanescucho@gmail.com<br/><i></i></td><td>90</td><td>193</td><td>150</td><td>17</td><td>21</td></tr>
+<tr><td>45</td><td><img class='User__image' src='https://avatars1.githubusercontent.com/u/12788039?v=4'><br/><a href='https://github.com/SaulMontoya'>SaulMontoya</a></td><td><b>Saul Montoya</b><br/>saulmontoya@gidahatari.com<br/><i>Hatari Labs</i></td><td>56</td><td>0</td><td>33</td><td>28</td><td>1</td></tr>
+<tr><td>46</td><td><img class='User__image' src='https://avatars2.githubusercontent.com/u/4109044?v=4'><br/><a href='https://github.com/brayancruces'>brayancruces</a></td><td><b>Brayan Cruces</b><br/><br/><i>Culqi (@culqi)</i></td><td>84</td><td>41</td><td>4</td><td>19</td><td>48</td></tr>
+<tr><td>47</td><td><img class='User__image' src='https://avatars0.githubusercontent.com/u/98363?v=4'><br/><a href='https://github.com/ptn'>ptn</a></td><td><b>Pablo Torres</b><br/>tn.pablo@gmail.com<br/><i></i></td><td>64</td><td>0</td><td>34</td><td>23</td><td>27</td></tr>
+<tr><td>48</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/6650?v=4'><br/><a href='https://github.com/gnrfan'>gnrfan</a></td><td><b>Antonio Ognio</b><br/>antonio@ognio.com<br/><i>Bit Zeppelin S.A.C.</i></td><td>67</td><td>3</td><td>51</td><td>20</td><td>29</td></tr>
+<tr><td>49</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/547722?v=4'><br/><a href='https://github.com/juaneladio'>juaneladio</a></td><td><b>Juan Eladio Sánchez Rosas</b><br/><br/><i>Ensoluciona</i></td><td>60</td><td>0</td><td>32</td><td>13</td><td>63</td></tr>
+<tr><td>50</td><td><img class='User__image' src='https://avatars3.githubusercontent.com/u/166259?v=4'><br/><a href='https://github.com/alessapereyra'>alessapereyra</a></td><td><b>Alessandra Pereyra Rabanal</b><br/><br/><i>Xenda</i></td><td>54</td><td>0</td><td>5</td><td>5</td><td>3</td></tr>
 </tbody></table> </div>
 
         </div>
