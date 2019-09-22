@@ -6,6 +6,8 @@ require 'uri'
 module Jekyll
     class MeetupMembersCounterTag < Liquid::Tag
 
+        attr_accessor :technologies
+
         def authorization_string
             return "client_id=#{ENV['CLIENT_ID']}&client_secret=#{ENV['CLIENT_SECRET']}"
         end
@@ -110,11 +112,11 @@ module Jekyll
             max_public_repos = 0
             max_issues = 0
 
-            (1..3).each do |i|
+            (1..2).each do |i|
 
                 sleep(30)
 
-                uri = URI.parse("https://api.github.com/search/users?q=location:lima location:peru followers:>10&per_page=30&page=#{i}&sort=followers&order=desc&#{authorization_string}")
+                uri = URI.parse("https://api.github.com/search/users?q=location:lima location:peru followers:>10&per_page=25&page=#{i}&sort=followers&order=desc&#{authorization_string}")
 
                 response = Net::HTTP.get_response(uri)
                 users = JSON.parse(response.body)
@@ -165,7 +167,13 @@ module Jekyll
                 ) / 5.0
             end
 
-            return @top_users.sort_by {|obj| obj[:score]}.reverse
+            languages = @technologies.sort_by {|k,v| v}.reverse.first(10).to_h 
+            sum = languages.values.reduce(:+).to_f
+            languages.each do |language, value|
+                languages[language] = (value/sum * 100).round(2)
+            end
+            
+            return @top_users.sort_by {|obj| obj[:score]}.reverse, languages
         end
 
         def render(context)
