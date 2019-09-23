@@ -36,3 +36,4 @@ La pagina esta basada en Jekyll para la generacion de contenido estatico y de Tr
 
 - Ejecutar `bundle install`
 - Ejecutar `jekyll build`
+- Podras ver el sitio web generado en la carpeta `_site`
