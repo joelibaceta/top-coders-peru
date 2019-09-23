@@ -167,7 +167,7 @@ module Jekyll
                 ) / 5.0
             end
 
-            languages = @technologies.sort_by {|k,v| v}.reverse.first(10).to_h 
+            languages = @technologies.sort_by {|k,v| v}.reverse.first(15).to_h 
             sum = languages.values.reduce(:+).to_f
             languages.each do |language, value|
                 languages[language] = (value/sum * 100).round(2)
