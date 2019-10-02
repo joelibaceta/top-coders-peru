@@ -29,28 +29,37 @@ module Jekyll
         end
 
         def countRepos(user)
-            uri = URI.parse("https://api.github.com/users/#{user}/repos?#{authorization_string}&per_page=100")
+            size = 0
+            begin
+                (1..2).each do |i|
+                
+                    uri = URI.parse("https://api.github.com/users/#{user}/repos?#{authorization_string}&per_page=100&page=#{i}")
 
-            http = Net::HTTP.new(uri.host, uri.port)
-            http.use_ssl = true
+                    http = Net::HTTP.new(uri.host, uri.port)
+                    http.use_ssl = true
 
-            request = Net::HTTP::Get.new(uri)
-            request["Accept"] = 'application/vnd.github.cloak-preview'
+                    request = Net::HTTP::Get.new(uri)
+                    request["Accept"] = 'application/vnd.github.cloak-preview'
 
-            response = http.request(request)
+                    response = http.request(request)
 
-            repos = JSON.parse(response.body)
+                    repos = JSON.parse(response.body)
 
-            repos.each do |repo|
-                getTechnologies(user, repo["name"])
-            end
+                    repos.each do |repo|
+                        getTechnologies(user, repo["name"])
+                    end
 
-            repos = repos.select do | repo |
-                !repo["fork"]
-            end
-            
+                    repos = repos.select do | repo |
+                    !repo["fork"]
+                    end
 
-            return repos.size
+                    size += repos.size
+
+               end
+            return size
+          rescue
+            return size
+          end
         end
 
         def countCommits(user)
