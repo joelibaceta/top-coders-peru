@@ -132,7 +132,7 @@ module Jekyll
 
                 users["items"].each do |user|
 
-                    sleep(5)
+                    sleep(10)
 
                     data = getUserData(user["login"])
 
