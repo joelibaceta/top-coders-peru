@@ -123,7 +123,7 @@ module Jekyll
 
             (1..2).each do |i|
 
-                sleep(30)
+                sleep(60)
 
                 uri = URI.parse("https://api.github.com/search/users?q=location:lima location:peru followers:>10&per_page=25&page=#{i}&sort=followers&order=desc&#{authorization_string}")
 
