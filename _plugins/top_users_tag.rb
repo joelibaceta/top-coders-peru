@@ -196,7 +196,7 @@ module Jekyll
                 element += "<tr><td>#{i + 1}</td>"
                 element += "<td><img class='User__image' src='#{user[:pic]}'><br/><a href='#{user[:url]}'>#{user[:id]}</a></td>"
                 element += "<td><b>#{user[:name]}</b><br/>#{user[:email]}<br/><i>#{user[:company]}</i></td>"
-                element += "<td>#{user[:score.round(2)]}</td><td>#{user[:followers]}</td><td>#{user[:commits]}</td><td>#{user[:stars]}</td><td>#{user[:repos]}</td><td>#{user[:issues]}</td></tr>\n"
+                element += "<td>#{user[:score].round(2)}</td><td>#{user[:followers]}</td><td>#{user[:commits]}</td><td>#{user[:stars]}</td><td>#{user[:repos]}</td><td>#{user[:issues]}</td></tr>\n"
             end
             element += "</tbody>"
             element += "</table> </div>\n"
