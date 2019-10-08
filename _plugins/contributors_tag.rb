@@ -13,6 +13,8 @@ module Jekyll
         end
 
         def render(context)
+            contributors = getContributors
+
             element = "<div class='contributors'>"
             contributors.each do |contributor|
                 element += "<div class='contributor'>"
