@@ -121,7 +121,7 @@ module Jekyll
             max_public_repos = 0
             max_issues = 0
 
-            (1..2).each do |i|
+            (1..1).each do |i|
 
                 sleep(60)
 
