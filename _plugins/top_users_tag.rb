@@ -31,7 +31,7 @@ module Jekyll
         def countRepos(user)
             size = 0
             begin
-                (1..2).each do |i|
+                (1..3).each do |i|
                 
                     uri = URI.parse("https://api.github.com/users/#{user}/repos?#{authorization_string}&per_page=100&page=#{i}")
 
