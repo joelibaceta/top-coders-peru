@@ -91,18 +91,18 @@ module Jekyll
                 users = JSON.parse(raw_response)
 
                 users["items"].each do |user|
-                    data = getUserData(user["login"])
-                    p data["name"]
-
+                    data = getUserData(user["login"]) 
                     commits = countCommits(user["login"])
                     stars = countStarts(user["login"])
                     followers = data["followers"]
                     repos = countRepos(user["login"]) 
 
+                    p data["name"]
+
                     max_commits = commits if commits > max_commits
                     max_stars = stars if stars > max_stars
                     max_followers = followers if followers > max_followers
-                    max_public_repos = repos if repos > max_public_repos 
+                    max_public_repos = repos if repos > max_public_repos
 
                     @top_users << {
                         id: user["login"],
@@ -124,8 +124,9 @@ module Jekyll
                     (user[:commits] / max_commits.to_f) * 0.3
                     (user[:stars] / max_stars.to_f) * 0.2 +
                     (user[:followers] / max_followers.to_f) * 0.3 +
-                    (user[:repos] / max_public_repos.to_f) * 0.2 
+                    (user[:repos] / max_public_repos.to_f) * 0.2
                 )
+                p "#{user[:name]} #{user[:commits]} #{user[:stars]} #{user[:followers]} #{user[:repos]} #{user[:score]}"
             end
 
             languages = @technologies.sort_by {|k,v| v}.reverse.first(15).to_h 
