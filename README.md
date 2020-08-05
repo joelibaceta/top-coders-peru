@@ -1,6 +1,8 @@
 # Top Coders Perú
 Based on Github Stats
 
+<br />
+
 [![CodeCogsEqn.svg](images/main_screenshot.png)](https://topcoders.pe/)
 
 <br/>
