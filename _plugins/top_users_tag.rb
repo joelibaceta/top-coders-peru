@@ -121,11 +121,11 @@ module Jekyll
             end
             @top_users.each do |user|
                 user[:score] = (
-                    ((user[:commits] / max_commits.to_f)) * 0.3
+                    (user[:commits] / max_commits.to_f) * 0.3
                     (user[:stars] / max_stars.to_f) * 0.2 +
                     (user[:followers] / max_followers.to_f) * 0.3 +
                     (user[:repos] / max_public_repos.to_f) * 0.2 
-                ) / 4.0
+                )
             end
 
             languages = @technologies.sort_by {|k,v| v}.reverse.first(15).to_h 
