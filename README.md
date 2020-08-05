@@ -1,7 +1,7 @@
 # Top Coders Perú
 Based on Github Stats
 
-[![CodeCogsEqn.svg](images/demo.png)](http://joelibaceta.github.io/top-coders-peru/)
+[![CodeCogsEqn.svg](images/screenshot.png)](https://topcoders.pe/)
 
 <br/>
 
