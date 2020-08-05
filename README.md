@@ -37,3 +37,5 @@ La pagina esta basada en Jekyll para la generacion de contenido estatico y de Tr
 - Ejecutar `bundle install`
 - Ejecutar `jekyll build`
 - Podras ver el sitio web generado en la carpeta `_site`
+- Definir las siguientes variables de entorno: `CLIENT_ID` y `CLIENT_SECRET` puedes obtener tus credenciales de la siguiente manera https://developer.github.com/v3/guides/basics-of-authentication/
+
