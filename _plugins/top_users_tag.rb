@@ -15,7 +15,7 @@ module Jekyll
 
             request = Net::HTTP::Get.new(uri)
             request["Accept"] = 'application/vnd.github.cloak-preview'
-            request["Authorization"] = 'Bearer ' + ENV['GITHUB_ACCESS_TOKEN']
+            request["Authorization"] = 'Bearer ' + ENV['GH_ACCESS_TOKEN']
 
             response = http.request(request)
             return response.body
