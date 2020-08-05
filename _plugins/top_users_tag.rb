@@ -125,7 +125,7 @@ module Jekyll
 
                 sleep(60)
 
-                uri = URI.parse("https://api.github.com/search/users?q=location:lima location:peru followers:>10&per_page=10&page=#{i}&sort=followers&order=desc&#{authorization_string}")
+                uri = URI.parse("https://api.github.com/search/users?q=location:lima location:peru followers:>10 repos:>10 type:user&per_page=10&page=#{i}&sort=followers&order=desc&#{authorization_string}")
 
                 response = Net::HTTP.get_response(uri)
                 users = JSON.parse(response.body)
@@ -168,12 +168,11 @@ module Jekyll
             end
             @top_users.each do |user|
                 user[:score] = (
-                    user[:commits] / max_commits.to_f +
-                    user[:stars] / max_stars.to_f +
-                    user[:followers] / max_followers.to_f +
-                    user[:repos] / max_public_repos.to_f +
-                    user[:issues] / max_issues.to_f
-                ) / 5.0
+                    ((user[:commits] / max_commits.to_f) + (user[:issues] / max_issues.to_f)) * 0.3
+                    (user[:stars] / max_stars.to_f) * 0.2 +
+                    (user[:followers] / max_followers.to_f) * 0.3 +
+                    (user[:repos] / max_public_repos.to_f) * 0.2 
+                ) / 4.0
             end
 
             languages = @technologies.sort_by {|k,v| v}.reverse.first(15).to_h 
