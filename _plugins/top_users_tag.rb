@@ -52,7 +52,7 @@ module Jekyll
             raw_response = make_get_request(uri)
             repos = JSON.parse(raw_response)
             counter = 0 
-            repos["items"].each |repo|
+            repos["items"].each do |repo|
                 counter += (repo["stargazers_count"].to_i)
             end
             return counter
