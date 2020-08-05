@@ -20,7 +20,7 @@ El indice de cada una de estas variables se divide entre el maximo general encon
 
 <br/>
 
-![CodeCogsEqn.svg](images/CodeCogsEqn.svg)
+![CodeCogsEqn.svg](images/CodeCogsEqn_2.svg)
 
 <br/>
 
