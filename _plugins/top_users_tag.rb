@@ -4,7 +4,7 @@ require 'json'
 require 'uri'
 
 module Jekyll
-    class MeetupMembersCounterTag < Liquid::Tag
+    class TopUsersTag < Liquid::Tag
 
         attr_accessor :technologies
 
@@ -133,9 +133,7 @@ module Jekyll
                 users["items"].each do |user|
 
                     sleep(20)
-
                     data = getUserData(user["login"])
-
                     p data["name"]
 
                     commits = countCommits(user["login"])
@@ -218,4 +216,4 @@ module Jekyll
     end
 end
 
-Liquid::Template.register_tag('top_users', Jekyll::MeetupMembersCounterTag)
+Liquid::Template.register_tag('top_users', Jekyll::TopUsersTag)
