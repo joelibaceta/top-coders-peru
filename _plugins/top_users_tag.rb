@@ -127,6 +127,7 @@ module Jekyll
                     (user[:repos] / max_public_repos.to_f)
                 ) / 4
                 p "#{user[:name]} #{user[:commits]} #{user[:stars]} #{user[:followers]} #{user[:repos]} #{user[:score]}"
+                p "#{(user[:commits] / max_commits.to_f)} #{(user[:stars] / max_stars.to_f)} #{(user[:followers] / max_followers.to_f)} #{(user[:repos] / max_public_repos.to_f)}"
             end
 
             languages = @technologies.sort_by {|k,v| v}.reverse.first(15).to_h 
