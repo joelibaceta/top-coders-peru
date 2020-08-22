@@ -7,6 +7,7 @@ module Jekyll
     class TopUsersTag < Liquid::Tag
 
         attr_accessor :technologies
+        attr_accessor :storage
 
         def make_get_request(uri) 
             uri = URI.parse(uri)
@@ -19,6 +20,14 @@ module Jekyll
 
             response = http.request(request)
             return response.body
+        end
+
+        def percentile(values, percentile)
+            values_sorted = values.sort
+            k = (percentile*(values_sorted.length-1)+1).floor - 1
+            f = (percentile*(values_sorted.length-1)+1).modulo(1)
+        
+            return values_sorted[k] + (f * (values_sorted[k+1] - values_sorted[k]))
         end
 
         def countRepos(user)
@@ -48,10 +57,10 @@ module Jekyll
         end
 
         def countStarts(user)
-            uri = "https://api.github.com/search/repositories?q=user:#{user} stars:>0"
+            uri = "https://api.github.com/search/repositories?q=user:#{user}+repo:#{user}"
             raw_response = make_get_request(uri)
             repos = JSON.parse(raw_response)
-            counter = 0 
+            counter = 0
             repos["items"].each do |repo|
                 counter += (repo["stargazers_count"].to_i)
             end
@@ -72,17 +81,12 @@ module Jekyll
         def getUserData(user)
             uri = "https://api.github.com/users/#{user}"
             raw_response = make_get_request(uri)  
+            print(raw_response)
             return JSON.parse(raw_response)
         end
 
-        def getTopUsersData
-            @top_users = []
-
-            max_commits = 0
-            max_stars = 0
-            max_followers = 0
-            max_public_repos = 0 
-
+        def getEachUserData
+            top_users = []
             (1..3).each do |i|
 
                 uri = "https://api.github.com/search/users?q=location:lima location:peru followers:>10 repos:>10 type:user&per_page=10&page=#{i}&sort=followers&order=desc"
@@ -91,20 +95,19 @@ module Jekyll
                 users = JSON.parse(raw_response)
 
                 users["items"].each do |user|
+                    
                     data = getUserData(user["login"]) 
+                    print(data)
                     commits = countCommits(user["login"])
                     stars = countStarts(user["login"])
                     followers = data["followers"]
-                    repos = countRepos(user["login"]) 
+                    repos = countRepos(user["login"])
 
                     p data["name"]
 
-                    max_commits = commits if commits > max_commits
-                    max_stars = stars if stars > max_stars
-                    max_followers = followers if followers > max_followers
-                    max_public_repos = repos if repos > max_public_repos
+                    
 
-                    @top_users << {
+                    top_users << {
                         id: user["login"],
                         pic: data["avatar_url"],
                         name: data["name"],
@@ -117,17 +120,62 @@ module Jekyll
                         stars: stars
                     }
                 end
-                
             end
+            return top_users
+        end
+
+        def calcMaxs(users)
+            commits, stars, followers = [], [], []
+
+            users.each do |user|
+                commits   << user["commits"] 
+                stars     << user["stars"]
+                followers << user["followers"] 
+            end
+
+            p95_commits      = percentile(commits, 0.90)
+            p95_stars        = percentile(stars, 0.90)
+            p95_followers    = percentile(followers, 0.90) 
+
+            return p95_commits, p95_stars, p95_followers 
+        end
+
+        def recalculateScores
+        end
+
+        def getTopUsersData
+            @top_users = []
+
+            if File.exist?("top_users_data.json")
+                data = JSON.parse(open("top_users_data.json").read())
+                @top_users      = data["users"]
+                @technologies   = data["technologies"]
+            else
+                @top_users = getEachUserData
+            end
+
+            max_commits, max_stars, max_followers = calcMaxs(@top_users)
+
             @top_users.each do |user|
-                user[:score] = (
-                    (user[:commits] / max_commits.to_f)
-                    (user[:stars] / max_stars.to_f) +
-                    (user[:followers] / max_followers.to_f) +
-                    (user[:repos] / max_public_repos.to_f)
-                ) / 4
-                p "#{user[:name]} #{user[:commits]} #{user[:stars]} #{user[:followers]} #{user[:repos]} #{user[:score]}"
+                user["score"] = (
+                    [(user["commits"] / max_commits.to_f), 1.0].min +
+                    [(user["stars"] / max_stars.to_f), 1.0].min +
+                    [(user["followers"] / max_followers.to_f), 1.0].min
+                ) / 3
+                
+                user["commits_pct"]     = [(user["commits"] / max_commits.to_f), 1.0].min 
+                user["stars_pct"]       = [(user["stars"] / max_stars.to_f), 1.0].min 
+                user["followers_pct"]   = [(user["followers"] / max_followers.to_f), 1.0].min 
+
+                puts "#{user["name"]}
+                    #{user["commits"]}:#{[(user["commits"] / max_commits.to_f), 1.0].min}
+                    #{user["stars"]}:#{[(user["stars"] / max_stars.to_f), 1.0].min}
+                    #{user["followers"]}:#{[(user["followers"] / max_followers.to_f), 1.0].min}
+                    #{user["score"]}"
             end
+
+            f = open("top_users_data.json", "w")
+            f.write({ users: @top_users, technologies: @technologies }.to_json)
 
             languages = @technologies.sort_by {|k,v| v}.reverse.first(15).to_h 
             sum = languages.values.reduce(:+).to_f
@@ -135,29 +183,30 @@ module Jekyll
                 languages[language] = (value/sum * 100).round(2)
             end
             
-            return @top_users.sort_by {|obj| obj[:score]}.reverse, languages
+            return @top_users.sort_by {|obj| obj["score"]}.reverse, languages
         end
 
         def render(context)
-            users, languages = getTopUsersData 
+            
+            users, languages = getTopUsersData
+
             element = "<script> draw_languages_chart(" + languages.to_json + ") </script>\n"
 
             element += "<div class='UsersTableContainer'> <table>\n"
             element += "<thead><th><td>User</td>"
             element += "<td>Info</td><td>Score</td>"
-            element += "<td>Followers</td>"
-            element += "<td>Commits</td>"
-            element += "<td>Stars</td><td>Repos</td>"
+            element += "<td>Popularity</td>"
+            element += "<td>Contributions</td>"
+            element += "<td>Activity</td>"
             element += "<tbody>"
             users.each_with_index do |user, i|
                 element += "<tr><td>#{i + 1}</td>"
-                element += "<td><img class='User__image' src='#{user[:pic]}'><br/><a href='#{user[:url]}'>#{user[:id]}</a></td>"
-                element += "<td><b>#{user[:name]}</b><br/>#{user[:email]}<br/><i>#{user[:company]}</i></td>"
-                element += "<td>#{user[:score].round(4)}</td>"
-                element += "<td>#{user[:followers]}</td>"
-                element += "<td>#{user[:commits]}</td>"
-                element += "<td>#{user[:stars]}</td>"
-                element += "<td>#{user[:repos]}</td>\n"
+                element += "<td><img class='User__image' src='#{user["pic"]}'><br/><a href='#{user["url"]}'>#{user["id"]}</a></td>"
+                element += "<td><b>#{user["name"]}</b><br/>#{user["email"]}<br/><i>#{user["company"]}</i></td>"
+                element += "<td>#{user["score"].round(4)}</td>"
+                element += "<td><span class='score'>#{user["followers_pct"].round(2)}</span></td>"
+                element += "<td>#{user["stars_pct"].round(2)}</td>"
+                element += "<td>#{user["commits_pct"].round(2)}</td>\n"
             end
             element += "</tbody>"
             element += "</table> </div>\n"
