@@ -108,16 +108,16 @@ module Jekyll
                     
 
                     top_users << {
-                        id: user["login"],
-                        pic: data["avatar_url"],
-                        name: data["name"],
-                        email: data["email"],
-                        company: data["company"],
-                        followers: followers,
-                        repos: repos,
-                        url: data["html_url"],
-                        commits: commits,
-                        stars: stars
+                        "id": user["login"],
+                        "pic": data["avatar_url"],
+                        "name": data["name"],
+                        "email": data["email"],
+                        "company": data["company"],
+                        "followers": followers,
+                        "repos": repos,
+                        "url": data["html_url"],
+                        "commits": commits,
+                        "stars": stars
                     }
                 end
             end
@@ -191,7 +191,6 @@ module Jekyll
             users, languages = getTopUsersData
 
             element = "<script> draw_languages_chart(" + languages.to_json + ") </script>\n"
-
             element += "<div class='UsersTableContainer'> <table>\n"
             element += "<thead><th><td>User</td>"
             element += "<td>Info</td><td>Score</td>"
