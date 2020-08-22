@@ -99,3 +99,16 @@ table {
     display: none;
   }
 }
+
+.score-box {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+
+  span:nth-child(1) {
+    font-size: 34px;
+  }
+  span:nth-child(2) {
+    font-size: 9px;
+  }
+}

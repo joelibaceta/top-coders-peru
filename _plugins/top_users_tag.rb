@@ -133,9 +133,9 @@ module Jekyll
                 followers << user["followers"] 
             end
 
-            p95_commits      = percentile(commits, 0.90)
-            p95_stars        = percentile(stars, 0.90)
-            p95_followers    = percentile(followers, 0.90) 
+            p95_commits      = percentile(commits, 0.95)
+            p95_stars        = percentile(stars, 0.95)
+            p95_followers    = percentile(followers, 0.95) 
 
             return p95_commits, p95_stars, p95_followers 
         end
@@ -163,9 +163,9 @@ module Jekyll
                     [(user["followers"] / max_followers.to_f), 1.0].min
                 ) / 3
                 
-                user["commits_pct"]     = [(user["commits"] / max_commits.to_f), 1.0].min 
-                user["stars_pct"]       = [(user["stars"] / max_stars.to_f), 1.0].min 
-                user["followers_pct"]   = [(user["followers"] / max_followers.to_f), 1.0].min 
+                user["commits_pct"]     = [(user["commits"] / max_commits.to_f), 1.0].min * 5
+                user["stars_pct"]       = [(user["stars"] / max_stars.to_f), 1.0].min * 5
+                user["followers_pct"]   = [(user["followers"] / max_followers.to_f), 1.0].min * 5
 
                 puts "#{user["name"]}
                     #{user["commits"]}:#{[(user["commits"] / max_commits.to_f), 1.0].min}
@@ -201,12 +201,12 @@ module Jekyll
             element += "<tbody>"
             users.each_with_index do |user, i|
                 element += "<tr><td>#{i + 1}</td>"
-                element += "<td><img class='User__image' src='#{user["pic"]}'><br/><a href='#{user["url"]}'>#{user["id"]}</a></td>"
+                element += "<td><a href='#{user["url"]}'><img class='User__image' src='#{user["pic"]}'></a></td>"
                 element += "<td><b>#{user["name"]}</b><br/>#{user["email"]}<br/><i>#{user["company"]}</i></td>"
-                element += "<td>#{user["score"].round(4)}</td>"
-                element += "<td><span class='score'>#{user["followers_pct"].round(2)}</span></td>"
-                element += "<td>#{user["stars_pct"].round(2)}</td>"
-                element += "<td>#{user["commits_pct"].round(2)}</td>\n"
+                element += "<td>#{(user["score"] * 5).round(3)}</td>"
+                element += "<td><div class='score-box'><span>#{user["followers_pct"].round(1)}</span><span>#{user["followers"].round(1)} followers</span></div></td>"
+                element += "<td><div class='score-box'><span>#{user["stars_pct"].round(1)}</span><span>#{user["stars"].round(1)} stars on public repos</span></div></td>"
+                element += "<td><div class='score-box'><span>#{user["commits_pct"].round(1)}</span><span>#{user["commits"].round(1)} commits in the last year</span></div></td>"
             end
             element += "</tbody>"
             element += "</table> </div>\n"
