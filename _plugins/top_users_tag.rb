@@ -7,6 +7,7 @@ module Jekyll
     class TopUsersTag < Liquid::Tag
 
         attr_accessor :technologies
+        attr_accessor :top_users
         attr_accessor :storage
 
         def make_get_request(uri) 
@@ -26,7 +27,8 @@ module Jekyll
             values_sorted = values.sort
             k = (percentile*(values_sorted.length-1)+1).floor - 1
             f = (percentile*(values_sorted.length-1)+1).modulo(1)
-        
+            puts "VALUES"
+            p(values)
             return values_sorted[k] + (f * (values_sorted[k+1] - values_sorted[k]))
         end
 
@@ -87,7 +89,7 @@ module Jekyll
 
         def getEachUserData
             top_users = []
-            (1..3).each do |i|
+            (1..5).each do |i|
 
                 uri = "https://api.github.com/search/users?q=location:lima location:peru followers:>10 repos:>10 type:user&per_page=10&page=#{i}&sort=followers&order=desc"
 
@@ -96,28 +98,25 @@ module Jekyll
 
                 users["items"].each do |user|
                     
-                    data = getUserData(user["login"]) 
-                    print(data)
+                    data = getUserData(user["login"])  
                     commits = countCommits(user["login"])
                     stars = countStarts(user["login"])
                     followers = data["followers"]
                     repos = countRepos(user["login"])
 
                     p data["name"]
-
-                    
-
+ 
                     top_users << {
-                        "id": user["login"],
-                        "pic": data["avatar_url"],
-                        "name": data["name"],
-                        "email": data["email"],
-                        "company": data["company"],
-                        "followers": followers,
-                        "repos": repos,
-                        "url": data["html_url"],
-                        "commits": commits,
-                        "stars": stars
+                        "id" => user["login"],
+                        "pic" => data["avatar_url"],
+                        "name" => data["name"],
+                        "email" => data["email"],
+                        "company" => data["company"],
+                        "followers" => followers,
+                        "repos" => repos,
+                        "url" => data["html_url"],
+                        "commits" => commits,
+                        "stars" => stars
                     }
                 end
             end
@@ -143,8 +142,7 @@ module Jekyll
         def recalculateScores
         end
 
-        def getTopUsersData
-            @top_users = []
+        def getTopUsersData 
 
             if File.exist?("top_users_data.json")
                 data = JSON.parse(open("top_users_data.json").read())
@@ -153,6 +151,9 @@ module Jekyll
             else
                 @top_users = getEachUserData
             end
+            
+            p "TOP USERS"
+            p @top_users
 
             max_commits, max_stars, max_followers = calcMaxs(@top_users)
 
@@ -167,11 +168,11 @@ module Jekyll
                 user["stars_pct"]       = [(user["stars"] / max_stars.to_f), 1.0].min * 5
                 user["followers_pct"]   = [(user["followers"] / max_followers.to_f), 1.0].min * 5
 
-                puts "#{user["name"]}
-                    #{user["commits"]}:#{[(user["commits"] / max_commits.to_f), 1.0].min}
-                    #{user["stars"]}:#{[(user["stars"] / max_stars.to_f), 1.0].min}
-                    #{user["followers"]}:#{[(user["followers"] / max_followers.to_f), 1.0].min}
-                    #{user["score"]}"
+                # puts "#{user["name"]}
+                #     #{user["commits"]}:#{[(user["commits"] / max_commits.to_f), 1.0].min}
+                #     #{user["stars"]}:#{[(user["stars"] / max_stars.to_f), 1.0].min}
+                #     #{user["followers"]}:#{[(user["followers"] / max_followers.to_f), 1.0].min}
+                #     #{user["score"]}"
             end
 
             f = open("top_users_data.json", "w")
@@ -193,7 +194,7 @@ module Jekyll
             element = "<script> draw_languages_chart(" + languages.to_json + ") </script>\n"
             element += "<div class='UsersTableContainer'> <table>\n"
             element += "<thead><th><td>User</td>"
-            element += "<td>Info</td><td>Score</td>"
+            element += "<td>Info</td>"
             element += "<td>Popularity</td>"
             element += "<td>Contributions</td>"
             element += "<td>Activity</td>"
@@ -202,7 +203,6 @@ module Jekyll
                 element += "<tr><td>#{i + 1}</td>"
                 element += "<td><a href='#{user["url"]}'><img class='User__image' src='#{user["pic"]}'></a></td>"
                 element += "<td><b>#{user["name"]}</b><br/>#{user["email"]}<br/><i>#{user["company"]}</i></td>"
-                element += "<td>#{(user["score"] * 5).round(3)}</td>"
                 element += "<td><div class='score-box'><span>#{user["followers_pct"].round(1)}</span><span>#{user["followers"].round(1)} followers</span></div></td>"
                 element += "<td><div class='score-box'><span>#{user["stars_pct"].round(1)}</span><span>#{user["stars"].round(1)} stars on public repos</span></div></td>"
                 element += "<td><div class='score-box'><span>#{user["commits_pct"].round(1)}</span><span>#{user["commits"].round(1)} commits in the last year</span></div></td>"
