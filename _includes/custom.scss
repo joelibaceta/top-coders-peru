@@ -101,14 +101,29 @@ table {
 }
 
 .score-box {
-  display: flex;
-  text-align: center;
-  flex-direction: column;
+  display: flex;   
 
-  span:nth-child(1) {
-    font-size: 32px;
+}
+
+.score-title {
+  display: flex; 
+  justify-content: center;
+  flex-direction: column;
+  font-size: 18px;
+}
+
+.score-detail {
+  white-space: nowrap;
+  i { 
+    overflow: hidden;
+    max-width: 18ch;
+    text-overflow: ellipsis;
   }
-  span:nth-child(2) {
+  padding-left: 15px;
+  small {
     font-size: 9px;
   }
+  display: flex; 
+  justify-content: center;
+  flex-direction: column;
 }

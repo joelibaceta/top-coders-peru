@@ -50,14 +50,22 @@ module Jekyll
         def countCommits(user)
             now = Time.new
             date_one_year_ago = "#{(now.year - 1).to_s}-#{now.month.to_s.rjust(2, '0')}-#{now.day.to_s.rjust(2, '0')}"
-            uri = "https://api.github.com/search/commits?q=author:#{user} committer-date:>#{date_one_year_ago}&per_page=100" 
+            uri = "https://api.github.com/search/commits?q=author:#{user} committer-date:>#{date_one_year_ago}&per_page=1" 
+            raw_response = make_get_request(uri) 
+            commits = JSON.parse(raw_response) 
+            return commits["total_count"]
+        end
+        
+
+        def countPRs(user)
+            uri = "https://api.github.com/search/issues?q=involves:#{user} type:pr is:merged is:public not #{user}  &per_page=1"
             raw_response = make_get_request(uri) 
             commits = JSON.parse(raw_response) 
             return commits["total_count"]
         end
 
         def countStarts(user)
-            uri = "https://api.github.com/search/repositories?q=user:#{user}+repo:#{user}"
+            uri = "https://api.github.com/search/repositories?q=user:#{user} repo:#{user}"
             raw_response = make_get_request(uri)
             repos = JSON.parse(raw_response)
             counter = 0
@@ -66,6 +74,8 @@ module Jekyll
             end
             return counter
         end
+
+
 
         def getTechnologies(user, repo)
             uri = "https://api.github.com/repos/#{user}/#{repo}/languages"
@@ -87,7 +97,7 @@ module Jekyll
 
         def getEachUserData
             top_users = []
-            (1..5).each do |i|
+            (1..3).each do |i|
 
                 uri = "https://api.github.com/search/users?q=location:lima location:peru followers:>10 repos:>10 type:user&per_page=10&page=#{i}&sort=followers&order=desc"
 
@@ -101,6 +111,7 @@ module Jekyll
                     stars = countStarts(user["login"])
                     followers = data["followers"]
                     repos = countRepos(user["login"])
+                    prs = countPRs(user["login"])
 
                     p data["name"]
  
@@ -114,7 +125,8 @@ module Jekyll
                         "repos" => repos,
                         "url" => data["html_url"],
                         "commits" => commits,
-                        "stars" => stars
+                        "stars" => stars,
+                        "prs" => prs
                     }
                 end
             end
@@ -122,19 +134,21 @@ module Jekyll
         end
 
         def calcMaxs(users)
-            commits, stars, followers = [], [], []
+            commits, stars, followers, prs = [], [], [], []
 
             users.each do |user|
                 commits   << user["commits"] 
                 stars     << user["stars"]
                 followers << user["followers"]
+                prs       << user["prs"]
             end
 
             p95_commits      = percentile(commits, 0.95)
             p95_stars        = percentile(stars, 0.95)
             p95_followers    = percentile(followers, 0.95) 
+            p95_prs          = percentile(prs, 0.95)
 
-            return p95_commits, p95_stars, p95_followers 
+            return p95_commits, p95_stars, p95_followers, p95_prs
         end
 
         def getTopUsersData 
@@ -147,18 +161,24 @@ module Jekyll
                 @top_users = getEachUserData
             end
 
-            max_commits, max_stars, max_followers = calcMaxs(@top_users)
+            max_commits, max_stars, max_followers, max_prs = calcMaxs(@top_users)
 
             @top_users.each do |user|
-                user["score"] = (
+                
+                contributions_score = (
+                    [(user["prs"] / max_prs.to_f), 1.0].min + 
+                    [(user["stars"] / max_stars.to_f), 1.0].min
+                ) / 2 
+
+                user["score"] = ((
                     [(user["commits"] / max_commits.to_f), 1.0].min +
-                    [(user["stars"] / max_stars.to_f), 1.0].min +
-                    [(user["followers"] / max_followers.to_f), 1.0].min
-                ) / 3
+                    contributions_score +
+                    [(user["followers"] / max_followers.to_f), 1.0].min 
+                ) / 3) * 5
                 
                 user["commits_pct"]     = [(user["commits"]   / max_commits.to_f), 1.0].min * 5
-                user["stars_pct"]       = [(user["stars"]     / max_stars.to_f), 1.0].min * 5
-                user["followers_pct"]   = [(user["followers"] / max_followers.to_f), 1.0].min * 5
+                user["contribs_pct"]     = contributions_score * 5
+                user["followers_pct"]   = [(user["followers"] / max_followers.to_f), 1.0].min * 5 
 
             end
 
@@ -182,6 +202,7 @@ module Jekyll
             element += "<div class='UsersTableContainer'> <table>\n"
             element += "<thead><th><td>User</td>"
             element += "<td>Info</td>"
+            element += "<td>Score</td>"
             element += "<td>Popularity</td>"
             element += "<td>Contributions</td>"
             element += "<td>Activity</td>"
@@ -189,10 +210,29 @@ module Jekyll
             users.each_with_index do |user, i|
                 element += "<tr><td>#{i + 1}</td>"
                 element += "<td><a href='#{user["url"]}'><img class='User__image' src='#{user["pic"]}'></a></td>"
-                element += "<td><b>#{user["name"]}</b><br/>#{user["email"]}<br/><i>#{user["company"]}</i></td>"
-                element += "<td><div class='score-box'><span>#{user["followers_pct"].round(1)}</span><span>#{user["followers"].round(1)} followers</span></div></td>"
-                element += "<td><div class='score-box'><span>#{user["stars_pct"].round(1)}</span><span>#{user["stars"].round(1)} stars on public repos</span></div></td>"
-                element += "<td><div class='score-box'><span>#{user["commits_pct"].round(1)}</span><span>#{user["commits"].round(1)} commits in the last year</span></div></td>"
+                element += "<td><div class='score-detail'><b>#{user["name"]}</b><span>#{user["email"]}</span><i>#{user["company"]}</i></div></td>"
+
+                element += "<td><div class='score-box'>"
+                element +=      "<div class='score-title'><span>#{user["score"].round(1)}</span></div>"
+                element +=      "</div>"
+                element += "</td>"
+                element += "<td><div class='score-box'>"
+                element +=      "<div class='score-title'><span>#{user["followers_pct"].round(1)}</span></div>"
+                element +=      "<div class='score-detail'>" 
+                element +=          "<small>#{user["followers"].round(1)} followers</small></div>"
+                element +=      "</div>"
+                element += "</td>"
+                element += "<td><div class='score-box'>"
+                element +=      "<div class='score-title'><span>#{user["contribs_pct"].round(1)}</span></div>"
+                element +=      "<div class='score-detail'>" 
+                element +=          "<small>#{user["stars"].round(1)} stars on public repos</small>"
+                element +=          "<small>#{user["prs"].round(1)} PRs merged on public repos</small></div>"
+                element +=      "</div>"
+                element += "</td>"
+                element += "<td><div class='score-box'>"
+                element +=      "<div class='score-title'><span>#{user["commits_pct"].round(1)}</span></div>"
+                element +=      "<div class='score-detail'>"
+                element +=          "<small>#{user["commits"].round(1)} commits in the last year</small></div></td>" 
             end
             element += "</tbody>"
             element += "</table> </div>\n"
