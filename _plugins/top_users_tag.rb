@@ -27,8 +27,6 @@ module Jekyll
             values_sorted = values.sort
             k = (percentile*(values_sorted.length-1)+1).floor - 1
             f = (percentile*(values_sorted.length-1)+1).modulo(1)
-            puts "VALUES"
-            p(values)
             return values_sorted[k] + (f * (values_sorted[k+1] - values_sorted[k]))
         end
 
@@ -129,7 +127,7 @@ module Jekyll
             users.each do |user|
                 commits   << user["commits"] 
                 stars     << user["stars"]
-                followers << user["followers"] 
+                followers << user["followers"]
             end
 
             p95_commits      = percentile(commits, 0.95)
@@ -137,9 +135,6 @@ module Jekyll
             p95_followers    = percentile(followers, 0.95) 
 
             return p95_commits, p95_stars, p95_followers 
-        end
-
-        def recalculateScores
         end
 
         def getTopUsersData 
@@ -151,9 +146,6 @@ module Jekyll
             else
                 @top_users = getEachUserData
             end
-            
-            p "TOP USERS"
-            p @top_users
 
             max_commits, max_stars, max_followers = calcMaxs(@top_users)
 
@@ -164,15 +156,10 @@ module Jekyll
                     [(user["followers"] / max_followers.to_f), 1.0].min
                 ) / 3
                 
-                user["commits_pct"]     = [(user["commits"] / max_commits.to_f), 1.0].min * 5
-                user["stars_pct"]       = [(user["stars"] / max_stars.to_f), 1.0].min * 5
+                user["commits_pct"]     = [(user["commits"]   / max_commits.to_f), 1.0].min * 5
+                user["stars_pct"]       = [(user["stars"]     / max_stars.to_f), 1.0].min * 5
                 user["followers_pct"]   = [(user["followers"] / max_followers.to_f), 1.0].min * 5
 
-                # puts "#{user["name"]}
-                #     #{user["commits"]}:#{[(user["commits"] / max_commits.to_f), 1.0].min}
-                #     #{user["stars"]}:#{[(user["stars"] / max_stars.to_f), 1.0].min}
-                #     #{user["followers"]}:#{[(user["followers"] / max_followers.to_f), 1.0].min}
-                #     #{user["score"]}"
             end
 
             f = open("top_users_data.json", "w")
