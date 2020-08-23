@@ -90,8 +90,7 @@ module Jekyll
 
         def getUserData(user)
             uri = "https://api.github.com/users/#{user}"
-            raw_response = make_get_request(uri)  
-            print(raw_response)
+            raw_response = make_get_request(uri) 
             return JSON.parse(raw_response)
         end
 
