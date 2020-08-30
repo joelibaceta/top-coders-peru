@@ -96,7 +96,7 @@ module Jekyll
 
         def getEachUserData
             top_users = []
-            (1..5).each do |i|
+            (1..3).each do |i|
 
                 uri = "https://api.github.com/search/users?q=location:lima location:peru followers:>10 repos:>10 type:user&per_page=10&page=#{i}&sort=followers&order=desc"
 
