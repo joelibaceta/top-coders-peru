@@ -138,7 +138,6 @@ module Jekyll
             if File.exist?("top_users_data.json")
                 data = JSON.parse(open("top_users_data.json").read())
                 @top_users      = data["users"]
-                @technologies   = data["technologies"]
             else
                 @top_users = getEachUserData
             end
@@ -166,14 +165,8 @@ module Jekyll
             end
 
             f = open("top_users_data.json", "w")
-            f.write({ users: @top_users, technologies: @technologies }.to_json)
+            f.write({ users: @top_users }.to_json)
 
-            languages = @technologies.sort_by {|k,v| v}.reverse.first(15).to_h 
-            sum = languages.values.reduce(:+).to_f
-            languages.each do |language, value|
-                languages[language] = (value/sum * 100).round(2)
-            end
-            
             return @top_users.sort_by {|obj| obj["score"]}.reverse, languages
         end
 
