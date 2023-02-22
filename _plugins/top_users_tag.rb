@@ -47,7 +47,13 @@ module Jekyll
             commits = JSON.parse(raw_response) 
             return commits["total_count"]
         end
-        
+
+        def countContributions(user)
+            uri = "https://github.com/users/#{user}/contributions"
+            raw_response = make_get_request(uri)
+            counter = raw_response.scan(/\>[\s\n\t]+(?<contrib>[0-9\,]+)[\s\n\t]+contributions/).flatten.first.gsub(",", "").to_i
+            return counter
+        end
 
         def countPRs(user)
             awaitRateLimitReset()
@@ -99,7 +105,7 @@ module Jekyll
         def getEachUserData
             top_users = []
 
-            uri = "https://api.github.com/search/users?q=location:lima+location:peru+followers:>10+repos:>10+type:user&per_page=50&page=1&sort=followers&order=desc"
+            uri = "https://api.github.com/search/users?q=location:lima+location:peru+followers:>10+repos:>10+type:user&per_page=10&page=1&sort=followers&order=desc"
 
             raw_response = make_get_request(uri)
             users = JSON.parse(raw_response)
@@ -107,7 +113,7 @@ module Jekyll
             users["items"].each do |user|
                 
                 data        = getUserData(user["login"])  
-                commits     = countCommits(user["login"])
+                commits     = countContributions(user["login"])
                 stars       = countStarts(user["login"])
                 followers   = data["followers"]
                 prs         = countPRs(user["login"])
