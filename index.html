@@ -4,14 +4,17 @@
   <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Inicio | topcoders</title>
-<meta name="generator" content="Jekyll v4.1.1" />
+<meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="Inicio" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="topcoders" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Inicio" />
 <script type="application/ld+json">
-{"@type":"WebSite","headline":"Inicio","url":"/","name":"topcoders","@context":"https://schema.org"}</script>
+{"@context":"https://schema.org","@type":"WebSite","headline":"Inicio","name":"topcoders","url":"/"}</script>
 <!-- End Jekyll SEO tag -->
 
         <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js'></script>
@@ -19,321 +22,745 @@
 
   <body>
       <style type="text/css">
-        /** Reset some basic elements */
-body, h1, h2, h3, h4, h5, h6, p, blockquote, pre, hr, dl, dd, ol, ul, figure { margin: 0; padding: 0; }
-
-/** Basic styling */
-body { font: 400 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; color: #111; background-color: #fdfdfd; -webkit-text-size-adjust: 100%; -webkit-font-feature-settings: "kern" 1; -moz-font-feature-settings: "kern" 1; -o-font-feature-settings: "kern" 1; font-feature-settings: "kern" 1; font-kerning: normal; display: flex; min-height: 100vh; flex-direction: column; }
-
-/** Set `margin-bottom` to maintain vertical rhythm */
-h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol, dl, figure, .highlight { margin-bottom: 15px; }
-
-/** `main` element */
-main { display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */ }
-
-/** Images */
-img { max-width: 100%; vertical-align: middle; }
-
-/** Figures */
-figure > img { display: block; }
-
-figcaption { font-size: 14px; }
-
-/** Lists */
-ul, ol { margin-left: 30px; }
-
-li > ul, li > ol { margin-bottom: 0; }
-
-/** Headings */
-h1, h2, h3, h4, h5, h6 { font-weight: 400; }
-
-/** Links */
-a { color: #2a7ae2; text-decoration: none; }
-
-a:visited { color: #1756a9; }
-
-a:hover { color: #111; text-decoration: underline; }
-
-.social-media-list a:hover { text-decoration: none; }
-
-.social-media-list a:hover .username { text-decoration: underline; }
-
-/** Blockquotes */
-blockquote { color: #828282; border-left: 4px solid #e8e8e8; padding-left: 15px; font-size: 18px; letter-spacing: -1px; font-style: italic; }
-
-blockquote > :last-child { margin-bottom: 0; }
-
-/** Code formatting */
-pre, code { font-size: 15px; border: 1px solid #e8e8e8; border-radius: 3px; background-color: #eef; }
-
-code { padding: 1px 5px; }
-
-pre { padding: 8px 12px; overflow-x: auto; }
-
-pre > code { border: 0; padding-right: 0; padding-left: 0; }
-
-/** Wrapper */
-.wrapper { max-width: -webkit-calc(800px - (30px * 2)); max-width: calc(800px - (30px * 2)); margin-right: auto; margin-left: auto; padding-right: 30px; padding-left: 30px; }
-
-@media screen and (max-width: 800px) { .wrapper { max-width: -webkit-calc(800px - (30px)); max-width: calc(800px - (30px)); padding-right: 15px; padding-left: 15px; } }
-
-/** Clearfix */
-.footer-col-wrapper:after, .wrapper:after { content: ""; display: table; clear: both; }
-
-/** Icons */
-.svg-icon { width: 16px; height: 16px; display: inline-block; fill: #828282; padding-right: 5px; vertical-align: text-top; }
-
-.social-media-list li + li { padding-top: 5px; }
-
-/** Tables */
-table { margin-bottom: 30px; width: 100%; text-align: left; color: #3f3f3f; border-collapse: collapse; border: 1px solid #e8e8e8; }
-
-table tr:nth-child(even) { background-color: #f7f7f7; }
-
-table th, table td { padding: 10px 15px; }
-
-table th { background-color: #f0f0f0; border: 1px solid #dedede; border-bottom-color: #c9c9c9; }
-
-table td { border: 1px solid #e8e8e8; }
-
-/** Site header */
-.site-header { border-top: 5px solid #424242; border-bottom: 1px solid #e8e8e8; min-height: 55.95px; position: relative; }
-
-.site-title { font-size: 26px; font-weight: 300; line-height: 54px; letter-spacing: -1px; margin-bottom: 0; float: left; }
-
-.site-title, .site-title:visited { color: #424242; }
-
-.site-nav { float: right; line-height: 54px; }
-
-.site-nav .nav-trigger { display: none; }
-
-.site-nav .menu-icon { display: none; }
-
-.site-nav .page-link { color: #111; line-height: 1.5; }
-
-.site-nav .page-link:not(:last-child) { margin-right: 20px; }
-
-@media screen and (max-width: 600px) { .site-nav { position: absolute; top: 9px; right: 15px; background-color: #fdfdfd; border: 1px solid #e8e8e8; border-radius: 5px; text-align: right; } .site-nav label[for="nav-trigger"] { display: block; float: right; width: 36px; height: 36px; z-index: 2; cursor: pointer; } .site-nav .menu-icon { display: block; float: right; width: 36px; height: 26px; line-height: 0; padding-top: 10px; text-align: center; } .site-nav .menu-icon > svg { fill: #424242; } .site-nav input ~ .trigger { clear: both; display: none; } .site-nav input:checked ~ .trigger { display: block; padding-bottom: 5px; } .site-nav .page-link { display: block; padding: 5px 10px; margin-left: 20px; } .site-nav .page-link:not(:last-child) { margin-right: 0; } }
-
-/** Site footer */
-.site-footer { border-top: 1px solid #e8e8e8; padding: 30px 0; }
-
-.footer-heading { font-size: 18px; margin-bottom: 15px; }
-
-.contact-list, .social-media-list { list-style: none; margin-left: 0; }
-
-.footer-col-wrapper { font-size: 15px; color: #828282; margin-left: -15px; }
-
-.footer-col { float: left; margin-bottom: 15px; padding-left: 15px; }
-
-.footer-col-1 { width: -webkit-calc(35% - (30px / 2)); width: calc(35% - (30px / 2)); }
-
-.footer-col-2 { width: -webkit-calc(20% - (30px / 2)); width: calc(20% - (30px / 2)); }
-
-.footer-col-3 { width: -webkit-calc(45% - (30px / 2)); width: calc(45% - (30px / 2)); }
-
-@media screen and (max-width: 800px) { .footer-col-1, .footer-col-2 { width: -webkit-calc(50% - (30px / 2)); width: calc(50% - (30px / 2)); } .footer-col-3 { width: -webkit-calc(100% - (30px / 2)); width: calc(100% - (30px / 2)); } }
-
-@media screen and (max-width: 600px) { .footer-col { float: none; width: -webkit-calc(100% - (30px / 2)); width: calc(100% - (30px / 2)); } }
-
-/** Page content */
-.page-content { padding: 30px 0; flex: 1; }
-
-.page-heading { font-size: 32px; }
-
-.post-list-heading { font-size: 28px; }
-
-.post-list { margin-left: 0; list-style: none; }
-
-.post-list > li { margin-bottom: 30px; }
-
-.post-meta { font-size: 14px; color: #828282; }
-
-.post-link { display: block; font-size: 24px; }
-
-/** Posts */
-.post-header { margin-bottom: 30px; }
-
-.post-title { font-size: 42px; letter-spacing: -1px; line-height: 1; }
-
-@media screen and (max-width: 800px) { .post-title { font-size: 36px; } }
-
-.post-content { margin-bottom: 30px; }
-
-.post-content h2 { font-size: 32px; }
-
-@media screen and (max-width: 800px) { .post-content h2 { font-size: 28px; } }
-
-.post-content h3 { font-size: 26px; }
-
-@media screen and (max-width: 800px) { .post-content h3 { font-size: 22px; } }
-
-.post-content h4 { font-size: 20px; }
-
-@media screen and (max-width: 800px) { .post-content h4 { font-size: 18px; } }
-
-/** Syntax highlighting styles */
-.highlight { background: #fff; }
-
-.highlighter-rouge .highlight { background: #eef; }
-
-.highlight .c { color: #998; font-style: italic; }
-
-.highlight .err { color: #a61717; background-color: #e3d2d2; }
-
-.highlight .k { font-weight: bold; }
-
-.highlight .o { font-weight: bold; }
-
-.highlight .cm { color: #998; font-style: italic; }
-
-.highlight .cp { color: #999; font-weight: bold; }
-
-.highlight .c1 { color: #998; font-style: italic; }
-
-.highlight .cs { color: #999; font-weight: bold; font-style: italic; }
-
-.highlight .gd { color: #000; background-color: #fdd; }
-
-.highlight .gd .x { color: #000; background-color: #faa; }
-
-.highlight .ge { font-style: italic; }
-
-.highlight .gr { color: #a00; }
-
-.highlight .gh { color: #999; }
-
-.highlight .gi { color: #000; background-color: #dfd; }
-
-.highlight .gi .x { color: #000; background-color: #afa; }
-
-.highlight .go { color: #888; }
-
-.highlight .gp { color: #555; }
-
-.highlight .gs { font-weight: bold; }
-
-.highlight .gu { color: #aaa; }
-
-.highlight .gt { color: #a00; }
-
-.highlight .kc { font-weight: bold; }
-
-.highlight .kd { font-weight: bold; }
-
-.highlight .kp { font-weight: bold; }
-
-.highlight .kr { font-weight: bold; }
-
-.highlight .kt { color: #458; font-weight: bold; }
-
-.highlight .m { color: #099; }
-
-.highlight .s { color: #d14; }
-
-.highlight .na { color: #008080; }
-
-.highlight .nb { color: #0086B3; }
-
-.highlight .nc { color: #458; font-weight: bold; }
-
-.highlight .no { color: #008080; }
-
-.highlight .ni { color: #800080; }
-
-.highlight .ne { color: #900; font-weight: bold; }
-
-.highlight .nf { color: #900; font-weight: bold; }
-
-.highlight .nn { color: #555; }
-
-.highlight .nt { color: #000080; }
-
-.highlight .nv { color: #008080; }
-
-.highlight .ow { font-weight: bold; }
-
-.highlight .w { color: #bbb; }
-
-.highlight .mf { color: #099; }
-
-.highlight .mh { color: #099; }
-
-.highlight .mi { color: #099; }
-
-.highlight .mo { color: #099; }
-
-.highlight .sb { color: #d14; }
-
-.highlight .sc { color: #d14; }
-
-.highlight .sd { color: #d14; }
-
-.highlight .s2 { color: #d14; }
-
-.highlight .se { color: #d14; }
-
-.highlight .sh { color: #d14; }
-
-.highlight .si { color: #d14; }
-
-.highlight .sx { color: #d14; }
-
-.highlight .sr { color: #009926; }
-
-.highlight .s1 { color: #d14; }
-
-.highlight .ss { color: #990073; }
-
-.highlight .bp { color: #999; }
-
-.highlight .vc { color: #008080; }
-
-.highlight .vg { color: #008080; }
-
-.highlight .vi { color: #008080; }
-
-.highlight .il { color: #099; }
+        /**
+ * Reset some basic elements
+ */
+body, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, hr,
+dl, dd, ol, ul, figure {
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Basic styling
+ */
+body {
+  font: 400 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: #111;
+  background-color: #fdfdfd;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-feature-settings: "kern" 1;
+  -moz-font-feature-settings: "kern" 1;
+  -o-font-feature-settings: "kern" 1;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+/**
+ * Set `margin-bottom` to maintain vertical rhythm
+ */
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+ul, ol, dl, figure,
+.highlight {
+  margin-bottom: 15px;
+}
+
+/**
+ * `main` element
+ */
+main {
+  display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */
+}
+
+/**
+ * Images
+ */
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+/**
+ * Figures
+ */
+figure > img {
+  display: block;
+}
+
+figcaption {
+  font-size: 14px;
+}
+
+/**
+ * Lists
+ */
+ul, ol {
+  margin-left: 30px;
+}
+
+li > ul,
+li > ol {
+  margin-bottom: 0;
+}
+
+/**
+ * Headings
+ */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+}
+
+/**
+ * Links
+ */
+a {
+  color: #2a7ae2;
+  text-decoration: none;
+}
+a:visited {
+  color: #1756a9;
+}
+a:hover {
+  color: #111;
+  text-decoration: underline;
+}
+.social-media-list a:hover {
+  text-decoration: none;
+}
+.social-media-list a:hover .username {
+  text-decoration: underline;
+}
+
+/**
+ * Blockquotes
+ */
+blockquote {
+  color: #828282;
+  border-left: 4px solid #e8e8e8;
+  padding-left: 15px;
+  font-size: 18px;
+  letter-spacing: -1px;
+  font-style: italic;
+}
+blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/**
+ * Code formatting
+ */
+pre,
+code {
+  font-size: 15px;
+  border: 1px solid #e8e8e8;
+  border-radius: 3px;
+  background-color: #eef;
+}
+
+code {
+  padding: 1px 5px;
+}
+
+pre {
+  padding: 8px 12px;
+  overflow-x: auto;
+}
+pre > code {
+  border: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/**
+ * Wrapper
+ */
+.wrapper {
+  max-width: -webkit-calc(800px - (30px * 2));
+  max-width: calc(800px - (30px * 2));
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+@media screen and (max-width: 800px) {
+  .wrapper {
+    max-width: -webkit-calc(800px - (30px));
+    max-width: calc(800px - (30px));
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+
+/**
+ * Clearfix
+ */
+.footer-col-wrapper:after, .wrapper:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/**
+ * Icons
+ */
+.svg-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  fill: #828282;
+  padding-right: 5px;
+  vertical-align: text-top;
+}
+
+.social-media-list li + li {
+  padding-top: 5px;
+}
+
+/**
+ * Tables
+ */
+table {
+  margin-bottom: 30px;
+  width: 100%;
+  text-align: left;
+  color: #3f3f3f;
+  border-collapse: collapse;
+  border: 1px solid #e8e8e8;
+}
+table tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+table th, table td {
+  padding: 10px 15px;
+}
+table th {
+  background-color: #f0f0f0;
+  border: 1px solid #dedede;
+  border-bottom-color: #c9c9c9;
+}
+table td {
+  border: 1px solid #e8e8e8;
+}
+
+/**
+ * Site header
+ */
+.site-header {
+  border-top: 5px solid #424242;
+  border-bottom: 1px solid #e8e8e8;
+  min-height: 55.95px;
+  position: relative;
+}
+
+.site-title {
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 54px;
+  letter-spacing: -1px;
+  margin-bottom: 0;
+  float: left;
+}
+.site-title, .site-title:visited {
+  color: #424242;
+}
+
+.site-nav {
+  float: right;
+  line-height: 54px;
+}
+.site-nav .nav-trigger {
+  display: none;
+}
+.site-nav .menu-icon {
+  display: none;
+}
+.site-nav .page-link {
+  color: #111;
+  line-height: 1.5;
+}
+.site-nav .page-link:not(:last-child) {
+  margin-right: 20px;
+}
+@media screen and (max-width: 600px) {
+  .site-nav {
+    position: absolute;
+    top: 9px;
+    right: 15px;
+    background-color: #fdfdfd;
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+    text-align: right;
+  }
+  .site-nav label[for=nav-trigger] {
+    display: block;
+    float: right;
+    width: 36px;
+    height: 36px;
+    z-index: 2;
+    cursor: pointer;
+  }
+  .site-nav .menu-icon {
+    display: block;
+    float: right;
+    width: 36px;
+    height: 26px;
+    line-height: 0;
+    padding-top: 10px;
+    text-align: center;
+  }
+  .site-nav .menu-icon > svg {
+    fill: #424242;
+  }
+  .site-nav input ~ .trigger {
+    clear: both;
+    display: none;
+  }
+  .site-nav input:checked ~ .trigger {
+    display: block;
+    padding-bottom: 5px;
+  }
+  .site-nav .page-link {
+    display: block;
+    padding: 5px 10px;
+    margin-left: 20px;
+  }
+  .site-nav .page-link:not(:last-child) {
+    margin-right: 0;
+  }
+}
+
+/**
+ * Site footer
+ */
+.site-footer {
+  border-top: 1px solid #e8e8e8;
+  padding: 30px 0;
+}
+
+.footer-heading {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.contact-list,
+.social-media-list {
+  list-style: none;
+  margin-left: 0;
+}
+
+.footer-col-wrapper {
+  font-size: 15px;
+  color: #828282;
+  margin-left: -15px;
+}
+
+.footer-col {
+  float: left;
+  margin-bottom: 15px;
+  padding-left: 15px;
+}
+
+.footer-col-1 {
+  width: -webkit-calc(35% - (30px / 2));
+  width: calc(35% - (30px / 2));
+}
+
+.footer-col-2 {
+  width: -webkit-calc(20% - (30px / 2));
+  width: calc(20% - (30px / 2));
+}
+
+.footer-col-3 {
+  width: -webkit-calc(45% - (30px / 2));
+  width: calc(45% - (30px / 2));
+}
+
+@media screen and (max-width: 800px) {
+  .footer-col-1,
+  .footer-col-2 {
+    width: -webkit-calc(50% - (30px / 2));
+    width: calc(50% - (30px / 2));
+  }
+  .footer-col-3 {
+    width: -webkit-calc(100% - (30px / 2));
+    width: calc(100% - (30px / 2));
+  }
+}
+@media screen and (max-width: 600px) {
+  .footer-col {
+    float: none;
+    width: -webkit-calc(100% - (30px / 2));
+    width: calc(100% - (30px / 2));
+  }
+}
+/**
+ * Page content
+ */
+.page-content {
+  padding: 30px 0;
+  flex: 1;
+}
+
+.page-heading {
+  font-size: 32px;
+}
+
+.post-list-heading {
+  font-size: 28px;
+}
+
+.post-list {
+  margin-left: 0;
+  list-style: none;
+}
+.post-list > li {
+  margin-bottom: 30px;
+}
+
+.post-meta {
+  font-size: 14px;
+  color: #828282;
+}
+
+.post-link {
+  display: block;
+  font-size: 24px;
+}
+
+/**
+ * Posts
+ */
+.post-header {
+  margin-bottom: 30px;
+}
+
+.post-title {
+  font-size: 42px;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+@media screen and (max-width: 800px) {
+  .post-title {
+    font-size: 36px;
+  }
+}
+
+.post-content {
+  margin-bottom: 30px;
+}
+.post-content h2 {
+  font-size: 32px;
+}
+@media screen and (max-width: 800px) {
+  .post-content h2 {
+    font-size: 28px;
+  }
+}
+.post-content h3 {
+  font-size: 26px;
+}
+@media screen and (max-width: 800px) {
+  .post-content h3 {
+    font-size: 22px;
+  }
+}
+.post-content h4 {
+  font-size: 20px;
+}
+@media screen and (max-width: 800px) {
+  .post-content h4 {
+    font-size: 18px;
+  }
+}
+
+/**
+ * Syntax highlighting styles
+ */
+.highlight {
+  background: #fff;
+}
+.highlighter-rouge .highlight {
+  background: #eef;
+}
+.highlight .c {
+  color: #998;
+  font-style: italic;
+}
+.highlight .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+.highlight .k {
+  font-weight: bold;
+}
+.highlight .o {
+  font-weight: bold;
+}
+.highlight .cm {
+  color: #998;
+  font-style: italic;
+}
+.highlight .cp {
+  color: #999;
+  font-weight: bold;
+}
+.highlight .c1 {
+  color: #998;
+  font-style: italic;
+}
+.highlight .cs {
+  color: #999;
+  font-weight: bold;
+  font-style: italic;
+}
+.highlight .gd {
+  color: #000;
+  background-color: #fdd;
+}
+.highlight .gd .x {
+  color: #000;
+  background-color: #faa;
+}
+.highlight .ge {
+  font-style: italic;
+}
+.highlight .gr {
+  color: #a00;
+}
+.highlight .gh {
+  color: #999;
+}
+.highlight .gi {
+  color: #000;
+  background-color: #dfd;
+}
+.highlight .gi .x {
+  color: #000;
+  background-color: #afa;
+}
+.highlight .go {
+  color: #888;
+}
+.highlight .gp {
+  color: #555;
+}
+.highlight .gs {
+  font-weight: bold;
+}
+.highlight .gu {
+  color: #aaa;
+}
+.highlight .gt {
+  color: #a00;
+}
+.highlight .kc {
+  font-weight: bold;
+}
+.highlight .kd {
+  font-weight: bold;
+}
+.highlight .kp {
+  font-weight: bold;
+}
+.highlight .kr {
+  font-weight: bold;
+}
+.highlight .kt {
+  color: #458;
+  font-weight: bold;
+}
+.highlight .m {
+  color: #099;
+}
+.highlight .s {
+  color: #d14;
+}
+.highlight .na {
+  color: #008080;
+}
+.highlight .nb {
+  color: #0086B3;
+}
+.highlight .nc {
+  color: #458;
+  font-weight: bold;
+}
+.highlight .no {
+  color: #008080;
+}
+.highlight .ni {
+  color: #800080;
+}
+.highlight .ne {
+  color: #900;
+  font-weight: bold;
+}
+.highlight .nf {
+  color: #900;
+  font-weight: bold;
+}
+.highlight .nn {
+  color: #555;
+}
+.highlight .nt {
+  color: #000080;
+}
+.highlight .nv {
+  color: #008080;
+}
+.highlight .ow {
+  font-weight: bold;
+}
+.highlight .w {
+  color: #bbb;
+}
+.highlight .mf {
+  color: #099;
+}
+.highlight .mh {
+  color: #099;
+}
+.highlight .mi {
+  color: #099;
+}
+.highlight .mo {
+  color: #099;
+}
+.highlight .sb {
+  color: #d14;
+}
+.highlight .sc {
+  color: #d14;
+}
+.highlight .sd {
+  color: #d14;
+}
+.highlight .s2 {
+  color: #d14;
+}
+.highlight .se {
+  color: #d14;
+}
+.highlight .sh {
+  color: #d14;
+}
+.highlight .si {
+  color: #d14;
+}
+.highlight .sx {
+  color: #d14;
+}
+.highlight .sr {
+  color: #009926;
+}
+.highlight .s1 {
+  color: #d14;
+}
+.highlight .ss {
+  color: #990073;
+}
+.highlight .bp {
+  color: #999;
+}
+.highlight .vc {
+  color: #008080;
+}
+.highlight .vg {
+  color: #008080;
+}
+.highlight .vi {
+  color: #008080;
+}
+.highlight .il {
+  color: #099;
+}
 
 /** Mixin for responsive design **/
-.UsersTableContainer { overflow-x: auto; }
+.UsersTableContainer {
+  overflow-x: auto;
+}
 
-.Main { display: flex; justify-content: space-around; flex-direction: column; /** Breakpoints based on Bootstrap4 **/ }
+.Main {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  /** Breakpoints based on Bootstrap4 **/
+}
+@media (min-width: 1140px) {
+  .Main {
+    flex-direction: row;
+  }
+}
+.Main__Info {
+  min-width: 250px;
+  width: 20%;
+}
+.Main__Content {
+  overflow-x: auto;
+}
 
-@media (min-width: 1140px) { .Main { flex-direction: row; } }
+.User__image {
+  width: 60px;
+  min-width: 30px;
+}
 
-.Main__Info { min-width: 250px; width: 20%; }
+.column {
+  padding: 20px;
+}
 
-.Main__Content { overflow-x: auto; }
+table {
+  font-size: 12px;
+}
+table thead {
+  font-weight: 600;
+}
 
-.User__image { width: 60px; min-width: 30px; }
+.contribute-button {
+  padding-top: 30px;
+}
+.contribute-button a {
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.contribute-button a svg {
+  margin-right: 10px;
+}
 
-.column { padding: 20px; }
+#flags {
+  display: flex;
+  justify-content: space-between;
+}
 
-table { font-size: 12px; }
+@media (max-width: 900px) {
+  canvas {
+    display: none;
+  }
+}
+.score-box {
+  display: flex;
+}
 
-table thead { font-weight: 600; }
+.score-title {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 18px;
+}
 
-.contribute-button { padding-top: 30px; }
-
-.contribute-button a { display: flex; align-items: center; padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
-
-.contribute-button a svg { margin-right: 10px; }
-
-#flags { display: flex; justify-content: space-between; }
-
-@media (max-width: 900px) { canvas { display: none; } }
-
-.score-box { display: flex; }
-
-.score-title { display: flex; justify-content: center; flex-direction: column; font-size: 18px; }
-
-.score-detail { white-space: nowrap; padding-left: 15px; display: flex; justify-content: center; flex-direction: column; }
-
-.score-detail i { overflow: hidden; max-width: 18ch; text-overflow: ellipsis; }
-
-.score-detail small { font-size: 9px; }
-
+.score-detail {
+  white-space: nowrap;
+  padding-left: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.score-detail i {
+  overflow: hidden;
+  max-width: 18ch;
+  text-overflow: ellipsis;
+}
+.score-detail small {
+  font-size: 9px;
+}
       </style>
     <div class="Main">
         <div class="column Main__Info">
@@ -402,9 +829,9 @@ table thead { font-weight: 600; }
     }
 </script> -->
 
-<script> draw_languages_chart({"JavaScript":20.77,"HTML":15.35,"CSS":13.09,"Shell":8.96,"Java":5.89,"Ruby":5.57,"Python":5.42,"Makefile":5.4,"Objective-C":3.59,"Swift":3.19,"Dockerfile":2.91,"C++":2.87,"C":2.78,"PHP":2.25,"Go":1.96}) </script>
+<script> draw_languages_chart({"JavaScript":23.76,"HTML":11.97,"Dart":9.94,"CSS":9.76,"TypeScript":8.47,"Objective-C":7.92,"Swift":6.08,"Kotlin":5.16,"Ruby":4.42,"Java":4.05,"Shell":2.76,"Dockerfile":2.21,"C":1.66,"C++":0.92,"CMake":0.92}) </script>
 <div class='UsersTableContainer'> <table>
-<thead><th><td>User</td><td>Info</td><td>Score</td><td>Popularity</td><td>Contributions</td><td>Activity</td><tbody><tr><td>1</td><td><a href='https://github.com/sergiodxa'><img class='User__image' src='https://avatars2.githubusercontent.com/u/1312018?v=4'></a></td><td><div class='score-detail'><b>Sergio Xalambrí</b><span>hello@sergiodxa.com</span><i>@ableco</i></div></td><td><div class='score-box'><div class='score-title'><span>3.0</span></div></div></td><td><div class='score-box'><div class='score-title'><span>5.0</span></div><div class='score-detail'><small>770 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>3.4</span></div><div class='score-detail'><small>1649 stars on public repos</small><small>61 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.8</span></div><div class='score-detail'><small>529 commits in the last year</small></div></td><tr><td>2</td><td><a href='https://github.com/joelibaceta'><img class='User__image' src='https://avatars1.githubusercontent.com/u/864790?v=4'></a></td><td><div class='score-detail'><b>Joel Ibaceta</b><span>mail@joelibaceta.com</span><i>@Kwema-Inc</i></div></td><td><div class='score-box'><div class='score-title'><span>2.6</span></div></div></td><td><div class='score-box'><div class='score-title'><span>1.8</span></div><div class='score-detail'><small>272 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>1.1</span></div><div class='score-detail'><small>1048 stars on public repos</small><small>12 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>5.0</span></div><div class='score-detail'><small>8242 commits in the last year</small></div></td><tr><td>3</td><td><a href='https://github.com/gpbl'><img class='User__image' src='https://avatars1.githubusercontent.com/u/120693?v=4'></a></td><td><div class='score-detail'><b>gpbl</b><span>io@gpbl.dev</span><i>@farmersdog </i></div></td><td><div class='score-box'><div class='score-title'><span>2.4</span></div></div></td><td><div class='score-box'><div class='score-title'><span>2.1</span></div><div class='score-detail'><small>308 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>5.0</span></div><div class='score-detail'><small>6657 stars on public repos</small><small>86 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.3</span></div><div class='score-detail'><small>190 commits in the last year</small></div></td><tr><td>4</td><td><a href='https://github.com/diegoveloper'><img class='User__image' src='https://avatars1.githubusercontent.com/u/4898256?v=4'></a></td><td><div class='score-detail'><b>Diego Velásquez López</b><span></span><i>@go-inc </i></div></td><td><div class='score-box'><div class='score-title'><span>2.4</span></div></div></td><td><div class='score-box'><div class='score-title'><span>5.0</span></div><div class='score-detail'><small>754 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>1.8</span></div><div class='score-detail'><small>2501 stars on public repos</small><small>10 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.5</span></div><div class='score-detail'><small>373 commits in the last year</small></div></td><tr><td>5</td><td><a href='https://github.com/luismayta'><img class='User__image' src='https://avatars2.githubusercontent.com/u/833664?v=4'></a></td><td><div class='score-detail'><b>L. Mayta</b><span>slovacus@gmail.com</span><i>SRE at @equipindustry</i></div></td><td><div class='score-box'><div class='score-title'><span>2.1</span></div></div></td><td><div class='score-box'><div class='score-title'><span>1.2</span></div><div class='score-detail'><small>176 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.1</span></div><div class='score-detail'><small>108 stars on public repos</small><small>2 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>5.0</span></div><div class='score-detail'><small>4152 commits in the last year</small></div></td><tr><td>6</td><td><a href='https://github.com/giansalex'><img class='User__image' src='https://avatars0.githubusercontent.com/u/14926587?v=4'></a></td><td><div class='score-detail'><b>Giancarlos Salas</b><span>me@giansalex.dev</span><i>IMM Corp</i></div></td><td><div class='score-box'><div class='score-title'><span>1.8</span></div></div></td><td><div class='score-box'><div class='score-title'><span>1.3</span></div><div class='score-detail'><small>200 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.5</span></div><div class='score-detail'><small>239 stars on public repos</small><small>7 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>3.7</span></div><div class='score-detail'><small>2493 commits in the last year</small></div></td><tr><td>7</td><td><a href='https://github.com/escueladigital'><img class='User__image' src='https://avatars2.githubusercontent.com/u/10574326?v=4'></a></td><td><div class='score-detail'><b>EDteam</b><span></span><i>EDteam</i></div></td><td><div class='score-box'><div class='score-title'><span>1.8</span></div></div></td><td><div class='score-box'><div class='score-title'><span>5.0</span></div><div class='score-detail'><small>743 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.3</span></div><div class='score-detail'><small>469 stars on public repos</small><small>1 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.0</span></div><div class='score-detail'><small>1 commits in the last year</small></div></td><tr><td>8</td><td><a href='https://github.com/hpneo'><img class='User__image' src='https://avatars2.githubusercontent.com/u/611699?v=4'></a></td><td><div class='score-detail'><b>Gustavo Leon</b><span>gmleonr@gmail.com</span><i>CodePicnic</i></div></td><td><div class='score-box'><div class='score-title'><span>1.7</span></div></div></td><td><div class='score-box'><div class='score-title'><span>2.3</span></div><div class='score-detail'><small>338 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>2.6</span></div><div class='score-detail'><small>7225 stars on public repos</small><small>2 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.3</span></div><div class='score-detail'><small>178 commits in the last year</small></div></td><tr><td>9</td><td><a href='https://github.com/lupomontero'><img class='User__image' src='https://avatars3.githubusercontent.com/u/110297?v=4'></a></td><td><div class='score-detail'><b>Lupo Montero</b><span>lupomontero@gmail.com</span><i>@Laboratoria @lima-js @mozillaperu </i></div></td><td><div class='score-box'><div class='score-title'><span>1.2</span></div></div></td><td><div class='score-box'><div class='score-title'><span>2.3</span></div><div class='score-detail'><small>341 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.8</span></div><div class='score-detail'><small>361 stars on public repos</small><small>13 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.6</span></div><div class='score-detail'><small>382 commits in the last year</small></div></td><tr><td>10</td><td><a href='https://github.com/colemancda'><img class='User__image' src='https://avatars3.githubusercontent.com/u/3419766?v=4'></a></td><td><div class='score-detail'><b>Alsey Coleman Miller</b><span>alseycmiller@gmail.com</span><i></i></div></td><td><div class='score-box'><div class='score-title'><span>1.2</span></div></div></td><td><div class='score-box'><div class='score-title'><span>2.0</span></div><div class='score-detail'><small>303 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.9</span></div><div class='score-detail'><small>722 stars on public repos</small><small>12 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.6</span></div><div class='score-detail'><small>412 commits in the last year</small></div></td><tr><td>11</td><td><a href='https://github.com/chris-ramon'><img class='User__image' src='https://avatars0.githubusercontent.com/u/1000404?v=4'></a></td><td><div class='score-detail'><b>Chris Ramón</b><span>rchristian.ramon@gmail.com</span><i></i></div></td><td><div class='score-box'><div class='score-title'><span>1.1</span></div></div></td><td><div class='score-box'><div class='score-title'><span>0.9</span></div><div class='score-detail'><small>137 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>2.2</span></div><div class='score-detail'><small>168 stars on public repos</small><small>45 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.2</span></div><div class='score-detail'><small>119 commits in the last year</small></div></td><tr><td>12</td><td><a href='https://github.com/joedayz'><img class='User__image' src='https://avatars1.githubusercontent.com/u/1118135?v=4'></a></td><td><div class='score-detail'><b>José Díaz</b><span></span><i>JOEDAYZ</i></div></td><td><div class='score-box'><div class='score-title'><span>1.1</span></div></div></td><td><div class='score-box'><div class='score-title'><span>3.1</span></div><div class='score-detail'><small>468 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.1</span></div><div class='score-detail'><small>151 stars on public repos</small><small>0 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.1</span></div><div class='score-detail'><small>37 commits in the last year</small></div></td><tr><td>13</td><td><a href='https://github.com/bjrmatos'><img class='User__image' src='https://avatars0.githubusercontent.com/u/4262050?v=4'></a></td><td><div class='score-detail'><b>BJR Matos</b><span>bjrmatos@gmail.com</span><i></i></div></td><td><div class='score-box'><div class='score-title'><span>1.0</span></div></div></td><td><div class='score-box'><div class='score-title'><span>0.8</span></div><div class='score-detail'><small>121 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>1.0</span></div><div class='score-detail'><small>317 stars on public repos</small><small>19 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>1.3</span></div><div class='score-detail'><small>855 commits in the last year</small></div></td><tr><td>14</td><td><a href='https://github.com/emedinaa'><img class='User__image' src='https://avatars2.githubusercontent.com/u/300238?v=4'></a></td><td><div class='score-detail'><b>Eduardo José Medina Alfaro</b><span>emedinaa@gmail.com</span><i>Mapsalud</i></div></td><td><div class='score-box'><div class='score-title'><span>1.0</span></div></div></td><td><div class='score-box'><div class='score-title'><span>2.5</span></div><div class='score-detail'><small>372 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.2</span></div><div class='score-detail'><small>466 stars on public repos</small><small>0 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.2</span></div><div class='score-detail'><small>148 commits in the last year</small></div></td><tr><td>15</td><td><a href='https://github.com/PuercoPop'><img class='User__image' src='https://avatars0.githubusercontent.com/u/387111?v=4'></a></td><td><div class='score-detail'><b>Javier Olaechea</b><span>pirata@gmail.com</span><i>@remotelock</i></div></td><td><div class='score-box'><div class='score-title'><span>0.9</span></div></div></td><td><div class='score-box'><div class='score-title'><span>1.2</span></div><div class='score-detail'><small>174 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>1.5</span></div><div class='score-detail'><small>87 stars on public repos</small><small>32 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.1</span></div><div class='score-detail'><small>51 commits in the last year</small></div></td><tr><td>16</td><td><a href='https://github.com/goandreus'><img class='User__image' src='https://avatars0.githubusercontent.com/u/24356603?v=4'></a></td><td><div class='score-detail'><b>Andres Chavez</b><span>andres.chavez.crisostomo@gmail.com</span><i>WiserSKILLS</i></div></td><td><div class='score-box'><div class='score-title'><span>0.8</span></div></div></td><td><div class='score-box'><div class='score-title'><span>1.6</span></div><div class='score-detail'><small>243 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.0</span></div><div class='score-detail'><small>40 stars on public repos</small><small>0 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.8</span></div><div class='score-detail'><small>514 commits in the last year</small></div></td><tr><td>17</td><td><a href='https://github.com/gcoronelc'><img class='User__image' src='https://avatars3.githubusercontent.com/u/3131952?v=4'></a></td><td><div class='score-detail'><b>Eric Gustavo Coronel Castillo</b><span>gcoronelc@gmail.com</span><i></i></div></td><td><div class='score-box'><div class='score-title'><span>0.7</span></div></div></td><td><div class='score-box'><div class='score-title'><span>1.2</span></div><div class='score-detail'><small>174 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.0</span></div><div class='score-detail'><small>74 stars on public repos</small><small>0 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>1.0</span></div><div class='score-detail'><small>681 commits in the last year</small></div></td><tr><td>18</td><td><a href='https://github.com/csaybar'><img class='User__image' src='https://avatars3.githubusercontent.com/u/16768318?v=4'></a></td><td><div class='score-detail'><b>Cesar Aybar</b><span>csaybar@gmail.com</span><i>EMCDE Student</i></div></td><td><div class='score-box'><div class='score-title'><span>0.7</span></div></div></td><td><div class='score-box'><div class='score-title'><span>1.0</span></div><div class='score-detail'><small>143 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.1</span></div><div class='score-detail'><small>176 stars on public repos</small><small>0 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>1.1</span></div><div class='score-detail'><small>723 commits in the last year</small></div></td><tr><td>19</td><td><a href='https://github.com/enzoftware'><img class='User__image' src='https://avatars3.githubusercontent.com/u/22333076?v=4'></a></td><td><div class='score-detail'><b>Enzo Lizama Paredes </b><span>lizama.enzo@gmail.com</span><i></i></div></td><td><div class='score-box'><div class='score-title'><span>0.7</span></div></div></td><td><div class='score-box'><div class='score-title'><span>1.2</span></div><div class='score-detail'><small>173 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.2</span></div><div class='score-detail'><small>201 stars on public repos</small><small>1 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.8</span></div><div class='score-detail'><small>524 commits in the last year</small></div></td><tr><td>20</td><td><a href='https://github.com/ivandevp'><img class='User__image' src='https://avatars3.githubusercontent.com/u/9284690?v=4'></a></td><td><div class='score-detail'><b>Ivan Medina</b><span>medinadiazivan@gmail.com</span><i>Yalo</i></div></td><td><div class='score-box'><div class='score-title'><span>0.7</span></div></div></td><td><div class='score-box'><div class='score-title'><span>1.4</span></div><div class='score-detail'><small>209 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.4</span></div><div class='score-detail'><small>37 stars on public repos</small><small>8 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.3</span></div><div class='score-detail'><small>179 commits in the last year</small></div></td><tr><td>21</td><td><a href='https://github.com/MineiToshio'><img class='User__image' src='https://avatars1.githubusercontent.com/u/38053554?v=4'></a></td><td><div class='score-detail'><b>Sergio Minei</b><span></span><i></i></div></td><td><div class='score-box'><div class='score-title'><span>0.6</span></div></div></td><td><div class='score-box'><div class='score-title'><span>1.5</span></div><div class='score-detail'><small>219 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.3</span></div><div class='score-detail'><small>567 stars on public repos</small><small>0 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.1</span></div><div class='score-detail'><small>61 commits in the last year</small></div></td><tr><td>22</td><td><a href='https://github.com/marimeli'><img class='User__image' src='https://avatars0.githubusercontent.com/u/39389947?v=4'></a></td><td><div class='score-detail'><b>Melissa Casas</b><span>marimel.casas@gmail.com</span><i></i></div></td><td><div class='score-box'><div class='score-title'><span>0.5</span></div></div></td><td><div class='score-box'><div class='score-title'><span>1.3</span></div><div class='score-detail'><small>201 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.0</span></div><div class='score-detail'><small>10 stars on public repos</small><small>0 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.2</span></div><div class='score-detail'><small>113 commits in the last year</small></div></td><tr><td>23</td><td><a href='https://github.com/eyllanesc'><img class='User__image' src='https://avatars0.githubusercontent.com/u/4896200?v=4'></a></td><td><div class='score-detail'><b>Edwin Christian Yllanes Cucho</b><span>e.yllanescucho@gmail.com</span><i>Freelance</i></div></td><td><div class='score-box'><div class='score-title'><span>0.5</span></div></div></td><td><div class='score-box'><div class='score-title'><span>0.9</span></div><div class='score-detail'><small>134 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.2</span></div><div class='score-detail'><small>255 stars on public repos</small><small>2 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.3</span></div><div class='score-detail'><small>185 commits in the last year</small></div></td><tr><td>24</td><td><a href='https://github.com/hpaucar'><img class='User__image' src='https://avatars1.githubusercontent.com/u/38171459?v=4'></a></td><td><div class='score-detail'><b>Herminio Paucar</b><span></span><i>@GPCUNMSM</i></div></td><td><div class='score-box'><div class='score-title'><span>0.4</span></div></div></td><td><div class='score-box'><div class='score-title'><span>0.9</span></div><div class='score-detail'><small>137 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.0</span></div><div class='score-detail'><small>13 stars on public repos</small><small>0 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.4</span></div><div class='score-detail'><small>242 commits in the last year</small></div></td><tr><td>25</td><td><a href='https://github.com/alejandrogarciasalas'><img class='User__image' src='https://avatars2.githubusercontent.com/u/4564870?v=4'></a></td><td><div class='score-detail'><b>Alejandro García Salas</b><span>algarcia@berkeley.edu</span><i></i></div></td><td><div class='score-box'><div class='score-title'><span>0.4</span></div></div></td><td><div class='score-box'><div class='score-title'><span>1.0</span></div><div class='score-detail'><small>150 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.2</span></div><div class='score-detail'><small>10 stars on public repos</small><small>5 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.0</span></div><div class='score-detail'><small>7 commits in the last year</small></div></td><tr><td>26</td><td><a href='https://github.com/carlosal1015'><img class='User__image' src='https://avatars0.githubusercontent.com/u/21283014?v=4'></a></td><td><div class='score-detail'><b>Oromion</b><span>caznaranl@uni.pe</span><i>National University of Engineering</i></div></td><td><div class='score-box'><div class='score-title'><span>0.4</span></div></div></td><td><div class='score-box'><div class='score-title'><span>1.0</span></div><div class='score-detail'><small>151 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.0</span></div><div class='score-detail'><small>36 stars on public repos</small><small>0 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.1</span></div><div class='score-detail'><small>83 commits in the last year</small></div></td><tr><td>27</td><td><a href='https://github.com/andru255'><img class='User__image' src='https://avatars1.githubusercontent.com/u/729789?v=4'></a></td><td><div class='score-detail'><b>Andrés Muñoz</b><span>andru255@gmail.com</span><i>@frontend-labs </i></div></td><td><div class='score-box'><div class='score-title'><span>0.3</span></div></div></td><td><div class='score-box'><div class='score-title'><span>0.9</span></div><div class='score-detail'><small>138 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.1</span></div><div class='score-detail'><small>39 stars on public repos</small><small>1 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.0</span></div><div class='score-detail'><small>22 commits in the last year</small></div></td><tr><td>28</td><td><a href='https://github.com/jansanchez'><img class='User__image' src='https://avatars2.githubusercontent.com/u/2623671?v=4'></a></td><td><div class='score-detail'><b>Jan Sanchez</b><span>joejansanchez@gmail.com</span><i>FrontEnd Labs</i></div></td><td><div class='score-box'><div class='score-title'><span>0.3</span></div></div></td><td><div class='score-box'><div class='score-title'><span>0.9</span></div><div class='score-detail'><small>133 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.1</span></div><div class='score-detail'><small>159 stars on public repos</small><small>0 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.0</span></div><div class='score-detail'><small>0 commits in the last year</small></div></td><tr><td>29</td><td><a href='https://github.com/lizzie136'><img class='User__image' src='https://avatars2.githubusercontent.com/u/3421560?v=4'></a></td><td><div class='score-detail'><b>Elizabeth Portilla</b><span></span><i>@Laboratoria </i></div></td><td><div class='score-box'><div class='score-title'><span>0.3</span></div></div></td><td><div class='score-box'><div class='score-title'><span>0.7</span></div><div class='score-detail'><small>107 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.1</span></div><div class='score-detail'><small>9 stars on public repos</small><small>1 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.0</span></div><div class='score-detail'><small>18 commits in the last year</small></div></td><tr><td>30</td><td><a href='https://github.com/KattyaCuevas'><img class='User__image' src='https://avatars2.githubusercontent.com/u/4174791?v=4'></a></td><td><div class='score-detail'><b>Kattya Cuevas</b><span>kattya.cuevas@gmail.com</span><i>@ableco</i></div></td><td><div class='score-box'><div class='score-title'><span>0.2</span></div></div></td><td><div class='score-box'><div class='score-title'><span>0.7</span></div><div class='score-detail'><small>105 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.0</span></div><div class='score-detail'><small>4 stars on public repos</small><small>0 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.0</span></div><div class='score-detail'><small>21 commits in the last year</small></div></td></tbody></table> </div>
+<thead><th><td>User</td><td>Info</td><td>Score</td><td>Popularity</td><td>Contributions</td><td>Activity</td><tbody><tr><td>1</td><td><a href='https://github.com/sergiodxa'><img class='User__image' src='https://avatars.githubusercontent.com/u/1312018?v=4'></a></td><td><div class='score-detail'><b>Sergio Xalambrí</b><span>hello@sergiodxa.com</span><i>Daffy.org</i></div></td><td><div class='score-box'><div class='score-title'><span>4.7</span></div></div></td><td><div class='score-box'><div class='score-title'><span>4.0</span></div><div class='score-detail'><small>1553 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>5.0</span></div><div class='score-detail'><small>5157 stars on public repos</small><small>180 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>5.0</span></div><div class='score-detail'><small>515 commits in the last year</small></div></td><tr><td>2</td><td><a href='https://github.com/diegoveloper'><img class='User__image' src='https://avatars.githubusercontent.com/u/4898256?v=4'></a></td><td><div class='score-detail'><b>Diego Velásquez López</b><span></span><i></i></div></td><td><div class='score-box'><div class='score-title'><span>2.8</span></div></div></td><td><div class='score-box'><div class='score-title'><span>5.0</span></div><div class='score-detail'><small>1966 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>2.6</span></div><div class='score-detail'><small>4652 stars on public repos</small><small>18 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.8</span></div><div class='score-detail'><small>71 commits in the last year</small></div></td><tr><td>3</td><td><a href='https://github.com/escueladigital'><img class='User__image' src='https://avatars.githubusercontent.com/u/10574326?v=4'></a></td><td><div class='score-detail'><b>EDteam</b><span></span><i>EDteam</i></div></td><td><div class='score-box'><div class='score-title'><span>0.9</span></div></div></td><td><div class='score-box'><div class='score-title'><span>2.4</span></div><div class='score-detail'><small>933 followers</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.3</span></div><div class='score-detail'><small>564 stars on public repos</small><small>1 PRs merged on public repos</small></div></div></td><td><div class='score-box'><div class='score-title'><span>0.0</span></div><div class='score-detail'><small>0 commits in the last year</small></div></td></tbody></table> </div>
 
 
         </div>
