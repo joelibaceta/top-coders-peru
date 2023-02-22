@@ -209,7 +209,7 @@ module Jekyll
             users.each_with_index do |user, i|
                 element += "<tr><td>#{i + 1}</td>"
                 element += "<td><a href='#{user["url"]}'><img class='User__image' src='#{user["pic"]}'></a></td>"
-                element += "<td><div class='score-detail'><b>#{user["name"]}</b><span>#{user["email"]}</span><i>#{user["company"]}</i></div></td>"
+                element += "<td><div class='score-detail'><b>#{user["name"]}</b><i>#{user["company"]}</i></div></td>"
 
                 element += "<td><div class='score-box'>"
                 element +=      "<div class='score-title'><span>#{user["score"].round(1)}</span></div>"
