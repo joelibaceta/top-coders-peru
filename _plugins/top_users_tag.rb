@@ -32,6 +32,7 @@ module Jekyll
 
 
         def countCommits(user)
+            awaitRateLimitReset()
             now = Time.new
             date_one_year_ago = "#{(now.year - 1).to_s}-#{now.month.to_s.rjust(2, '0')}-#{now.day.to_s.rjust(2, '0')}"
             uri = "https://api.github.com/search/commits?q=author:#{user} committer-date:>#{date_one_year_ago}&per_page=1" 
@@ -42,6 +43,7 @@ module Jekyll
         
 
         def countPRs(user)
+            awaitRateLimitReset()
             uri = "https://api.github.com/search/issues?q=involves:#{user} type:pr is:merged is:public not #{user}  &per_page=1"
             raw_response = make_get_request(uri) 
             commits = JSON.parse(raw_response) 
@@ -49,6 +51,7 @@ module Jekyll
         end
 
         def countStarts(user)
+            awaitRateLimitReset()
             uri = "https://api.github.com/search/repositories?q=user:#{user}+stars:>0+repo:#{user}"
             raw_response = make_get_request(uri)
             repos = JSON.parse(raw_response)
