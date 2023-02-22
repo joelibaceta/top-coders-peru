@@ -51,6 +51,7 @@ module Jekyll
         def countStarts(user)
             uri = "https://api.github.com/search/repositories?q=user:#{user}+stars:>0+repo:#{user}"
             raw_response = make_get_request(uri)
+            p raw_response
             repos = JSON.parse(raw_response)
             counter = 0
             if repos["total_count"] > 0
