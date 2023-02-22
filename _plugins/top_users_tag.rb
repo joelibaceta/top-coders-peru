@@ -75,7 +75,7 @@ module Jekyll
             raw_response = make_get_request(uri) 
             rate_limits = JSON.parse(raw_response)
             search_limit = rate_limits["resources"]["search"]
-            if search_limit["remaining"] == 0
+            if search_limit["remaining"] < 2
                 p "Sleeping for 1 minute..."
                 sleep(60)
                 awaitRateLimitReset()
