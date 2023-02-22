@@ -136,10 +136,10 @@ module Jekyll
             @top_users.each do |user|
                 
                 contributions_score = (
-                    [(user["repos"] / max_repos.to_f), 1.0].min + 
+                    #[(user["repos"] / max_repos.to_f), 1.0].min + 
                     [(user["prs"] / max_prs.to_f), 1.0].min + 
                     [(user["stars"] / max_stars.to_f), 1.0].min
-                ) / 3
+                ) / 2
 
                 user["score"] = ((
                     [(user["commits"] / max_commits.to_f), 1.0].min +
@@ -190,7 +190,6 @@ module Jekyll
                 element += "<td><div class='score-box'>"
                 element +=      "<div class='score-title'><span>#{user["contribs_pct"].round(1)}</span></div>"
                 element +=      "<div class='score-detail'>" 
-                element +=          "<small>#{user["repos"].round(1)} public repos</small>"
                 element +=          "<small>#{user["stars"].round(1)} stars on public repos</small>"
                 element +=          "<small>#{user["prs"].round(1)} PRs merged on public repos</small></div>"
                 element +=      "</div>"
