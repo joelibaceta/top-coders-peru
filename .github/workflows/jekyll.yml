@@ -21,8 +21,8 @@ jobs:
       env:
         GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
 
-    - uses: JamesIves/github-pages-deploy-action@v4
     - name: Deploy to gh-pages
-    - with:
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
         branch: gh-pages # The branch the action should deploy to.
         folder: ${{ github.workspace }}/_site # The folder the action should deploy.
