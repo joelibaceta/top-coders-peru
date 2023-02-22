@@ -59,17 +59,6 @@ module Jekyll
             return counter
         end
 
-        def getTechnologies(user, repo)
-            uri = "https://api.github.com/repos/#{user}/#{repo}/languages"
-            raw_response = make_get_request(uri) 
-            languages = JSON.parse(raw_response)
-
-            languages.each do |language, lines|
-                counter = @technologies[language] || 0
-                @technologies[language] = (counter + 1 ) 
-            end
-        end
-
         def getUserData(user)
             uri = "https://api.github.com/users/#{user}"
             raw_response = make_get_request(uri) 
@@ -78,7 +67,7 @@ module Jekyll
 
         def getEachUserData
             top_users = []
-            (1..5).each do |i|
+            (1..3).each do |i|
 
                 uri = "https://api.github.com/search/users?q=location:lima+location:peru+followers:>10+repos:>10+type:user&per_page=10&page=#{i}&sort=followers&order=desc"
 
