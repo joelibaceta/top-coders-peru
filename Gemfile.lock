@@ -73,6 +73,7 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll
+  jekyll-seo-tag
   kramdown (>= 1.14.0)
   minima
 
