@@ -30,22 +30,6 @@ module Jekyll
             return values_sorted[k] + (f * (values_sorted[k+1] - values_sorted[k]))
         end
 
-        def countRepos(user)
-            size = 0
-            begin
-                (1..3).each do |i|
-                    uri = "https://api.github.com/users/#{user}/repos?per_page=100&page=#{i}"
-                    raw_response = make_get_request(uri)
-                    repos = JSON.parse(raw_response) 
-                    repos.each { |repo| getTechnologies(user, repo["name"]) }
-                    repos = repos.select { |repo| !repo["fork"] }
-                    size += repos.size
-               end
-            return size
-          rescue
-            return size
-          end
-        end
 
         def countCommits(user)
             now = Time.new
@@ -75,8 +59,6 @@ module Jekyll
             return counter
         end
 
-
-
         def getTechnologies(user, repo)
             uri = "https://api.github.com/repos/#{user}/#{repo}/languages"
             raw_response = make_get_request(uri) 
@@ -105,12 +87,11 @@ module Jekyll
 
                 users["items"].each do |user|
                     
-                    data = getUserData(user["login"])  
-                    commits = countCommits(user["login"])
-                    stars = countStarts(user["login"])
-                    followers = data["followers"]
-                    repos = countRepos(user["login"])
-                    prs = countPRs(user["login"])
+                    data        = getUserData(user["login"])  
+                    commits     = countCommits(user["login"])
+                    stars       = countStarts(user["login"])
+                    followers   = data["followers"]
+                    prs         = countPRs(user["login"])
 
                     p data["name"]
  
@@ -121,7 +102,7 @@ module Jekyll
                         "email" => data["email"],
                         "company" => data["company"],
                         "followers" => followers,
-                        "repos" => repos,
+                        "repos" => data["public_repos"],
                         "url" => data["html_url"],
                         "commits" => commits,
                         "stars" => stars,
@@ -139,6 +120,7 @@ module Jekyll
                 commits   << user["commits"] 
                 stars     << user["stars"]
                 followers << user["followers"]
+                repos     << user["repos"]
                 prs       << user["prs"]
             end
 
@@ -146,8 +128,9 @@ module Jekyll
             p95_stars        = percentile(stars, 0.95)
             p95_followers    = percentile(followers, 0.95) 
             p95_prs          = percentile(prs, 0.95)
+            p95_repos        = percentile(repos, 0.95)
 
-            return p95_commits, p95_stars, p95_followers, p95_prs
+            return p95_commits, p95_stars, p95_followers, p95_prs, p95_repos
         end
 
         def getTopUsersData 
@@ -160,14 +143,15 @@ module Jekyll
                 @top_users = getEachUserData
             end
 
-            max_commits, max_stars, max_followers, max_prs = calcMaxs(@top_users)
+            max_commits, max_stars, max_followers, max_prs, max_repos = calcMaxs(@top_users)
 
             @top_users.each do |user|
                 
                 contributions_score = (
+                    [(user["repos"] / max_repos.to_f), 1.0].min + 
                     [(user["prs"] / max_prs.to_f), 1.0].min + 
                     [(user["stars"] / max_stars.to_f), 1.0].min
-                ) / 2 
+                ) / 3
 
                 user["score"] = ((
                     [(user["commits"] / max_commits.to_f), 1.0].min +
@@ -224,6 +208,7 @@ module Jekyll
                 element += "<td><div class='score-box'>"
                 element +=      "<div class='score-title'><span>#{user["contribs_pct"].round(1)}</span></div>"
                 element +=      "<div class='score-detail'>" 
+                element +=          "<small>#{user["repos"].round(1)} public repos</small>"
                 element +=          "<small>#{user["stars"].round(1)} stars on public repos</small>"
                 element +=          "<small>#{user["prs"].round(1)} PRs merged on public repos</small></div>"
                 element +=      "</div>"
