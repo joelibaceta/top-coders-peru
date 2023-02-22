@@ -67,12 +67,23 @@ module Jekyll
             return JSON.parse(raw_response)
         end
 
+        def awaitRateLimitReset()
+            uri = "https://api.github.com/rate_limit"
+            raw_response = make_get_request(uri) 
+            rate_limits = JSON.parse(raw_response)
+            search_limit = rate_limits["resources"]["search"]
+            if search_limit["remaining"] == 0
+                p "Sleeping for 1 minute..."
+                sleep(60)
+                awaitRateLimitReset()
+            end
+        end
+
         def getEachUserData
             top_users = []
             (1..10).each do |i|
 
-                p "Sleeping for 10 seconds..."
-                sleep(10)
+                awaitRateLimitReset()
 
                 uri = "https://api.github.com/search/users?q=location:lima+location:peru+followers:>10+repos:>10+type:user&per_page=3&page=#{i}&sort=followers&order=desc"
 
