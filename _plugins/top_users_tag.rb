@@ -11,15 +11,22 @@ module Jekyll
         attr_accessor :storage
 
         def make_get_request(uri) 
-            uri = URI.parse(uri)
-            http = Net::HTTP.new(uri.host, uri.port)
+            parsed_uri = URI.parse(uri)
+            http = Net::HTTP.new(parsed_uri.host, parsed_uri.port)
             http.use_ssl = true
 
-            request = Net::HTTP::Get.new(uri)
+            request = Net::HTTP::Get.new(parsed_uri)
             request["Accept"] = 'application/vnd.github.cloak-preview'
             request["Authorization"] = 'Bearer ' + ENV['GH_ACCESS_TOKEN']
 
             response = http.request(request)
+
+            if response.code == "403" or response.body.include? "rate limit"
+                p "Rate limit exceeded. Sleeping for 10 seconds..."
+                sleep(10)
+                make_get_request(uri)
+            end
+
             return response.body
         end
 
@@ -55,6 +62,9 @@ module Jekyll
             uri = "https://api.github.com/search/repositories?q=user:#{user}+stars:>0+repo:#{user}"
             raw_response = make_get_request(uri)
             repos = JSON.parse(raw_response)
+            if repos["total_count"] == nil
+                p "Error: #{repos}"
+            end
             counter = 0
             if repos["total_count"] > 0
                 repos["items"].each do |repo|
@@ -70,53 +80,53 @@ module Jekyll
             return JSON.parse(raw_response)
         end
 
-        def awaitRateLimitReset()
+        def awaitRateLimitReset(still_sleeping=false)
             uri = "https://api.github.com/rate_limit"
             raw_response = make_get_request(uri) 
             rate_limits = JSON.parse(raw_response)
             search_limit = rate_limits["resources"]["search"]
-            if search_limit["remaining"] < 2
-                p "Sleeping for 1 minute..."
-                sleep(60)
-                awaitRateLimitReset()
+            if search_limit["remaining"] < 5
+                if still_sleeping == true
+                    p "Still sleeping, 10 more seconds..."
+                else
+                    p "Less than 5 request remaining to reach rate limit sleeping for 10 seconds..."
+                end
+                sleep(10)
+                awaitRateLimitReset(still_sleeping=true)
             end
         end
 
         def getEachUserData
             top_users = []
-            (1..10).each do |i|
 
-                awaitRateLimitReset()
+            uri = "https://api.github.com/search/users?q=location:lima+location:peru+followers:>10+repos:>10+type:user&per_page=50&page=1&sort=followers&order=desc"
 
-                uri = "https://api.github.com/search/users?q=location:lima+location:peru+followers:>10+repos:>10+type:user&per_page=3&page=#{i}&sort=followers&order=desc"
+            raw_response = make_get_request(uri)
+            users = JSON.parse(raw_response)
 
-                raw_response = make_get_request(uri)
-                users = JSON.parse(raw_response)
+            users["items"].each do |user|
+                
+                data        = getUserData(user["login"])  
+                commits     = countCommits(user["login"])
+                stars       = countStarts(user["login"])
+                followers   = data["followers"]
+                prs         = countPRs(user["login"])
 
-                users["items"].each do |user|
-                    
-                    data        = getUserData(user["login"])  
-                    commits     = countCommits(user["login"])
-                    stars       = countStarts(user["login"])
-                    followers   = data["followers"]
-                    prs         = countPRs(user["login"])
+                p data["name"]
 
-                    p data["name"]
- 
-                    top_users << {
-                        "id" => user["login"],
-                        "pic" => data["avatar_url"],
-                        "name" => data["name"],
-                        "email" => data["email"],
-                        "company" => data["company"],
-                        "followers" => followers,
-                        "repos" => data["public_repos"],
-                        "url" => data["html_url"],
-                        "commits" => commits,
-                        "stars" => stars,
-                        "prs" => prs
-                    }
-                end
+                top_users << {
+                    "id" => user["login"],
+                    "pic" => data["avatar_url"],
+                    "name" => data["name"],
+                    "email" => data["email"],
+                    "company" => data["company"],
+                    "followers" => followers,
+                    "repos" => data["public_repos"],
+                    "url" => data["html_url"],
+                    "commits" => commits,
+                    "stars" => stars,
+                    "prs" => prs
+                }
             end
             return top_users
         end
@@ -128,7 +138,6 @@ module Jekyll
                 commits   << user["commits"] 
                 stars     << user["stars"]
                 followers << user["followers"]
-                repos     << user["repos"]
                 prs       << user["prs"]
             end
 
@@ -136,12 +145,11 @@ module Jekyll
             p95_stars        = percentile(stars, 0.95)
             p95_followers    = percentile(followers, 0.95) 
             p95_prs          = percentile(prs, 0.95)
-            p95_repos        = percentile(repos, 0.95)
 
-            return p95_commits, p95_stars, p95_followers, p95_prs, p95_repos
+            return p95_commits, p95_stars, p95_followers, p95_prs
         end
 
-        def getTopUsersData 
+        def getTopUsersData()
 
             if File.exist?("top_users_data.json")
                 data = JSON.parse(open("top_users_data.json").read())
@@ -175,15 +183,15 @@ module Jekyll
             f = open("top_users_data.json", "w")
             f.write({ users: @top_users }.to_json)
 
-            return @top_users.sort_by {|obj| obj["score"]}.reverse, languages
+            return @top_users.sort_by {|obj| obj["score"]}.reverse
         end
 
         def render(context)
             
-            users, languages = getTopUsersData
+            users = getTopUsersData
 
-            element = "<script> draw_languages_chart(" + languages.to_json + ") </script>\n"
-            element += "<div class='UsersTableContainer'> <table>\n"
+            #element = "<script> draw_languages_chart(" + languages.to_json + ") </script>\n"
+            element = "<div class='UsersTableContainer'> <table>\n"
             element += "<thead><th><td>User</td>"
             element += "<td>Info</td>"
             element += "<td>Score</td>"
