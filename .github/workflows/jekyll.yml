@@ -22,6 +22,7 @@ jobs:
         jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"  
       env:
         GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+        LOCATION: $LOCATION
 
     - name: Deploy to gh-pages
       uses: JamesIves/github-pages-deploy-action@v4
