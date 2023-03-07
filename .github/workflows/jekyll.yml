@@ -7,12 +7,15 @@ on:
     branches: [ master ]
   schedule:
     - cron: "0 0 * * *"
+env:
+  GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+  LOCATION: ${{ env.LOCATION }}
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    
     steps:
     - uses: actions/checkout@v2
     - name: Build the site in the jekyll/builder container
@@ -20,9 +23,6 @@ jobs:
         docker run  -e GH_ACCESS_TOKEN='${{ secrets.GH_ACCESS_TOKEN }}' -e LOCATION='$LOCATION' \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
         jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"  
-      env:
-        GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
-        LOCATION: ${{ env.LOCATION }}
 
     - name: Deploy to gh-pages
       uses: JamesIves/github-pages-deploy-action@v4
