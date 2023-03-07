@@ -106,7 +106,7 @@ module Jekyll
             top_users = []
 
             location = ENV['LOCATION']
-            uri = f"https://api.github.com/search/users?q={location}+followers:>10+repos:>10+type:user&per_page=50&page=1&sort=followers&order=desc"
+            uri = "https://api.github.com/search/users?q=#{location}+followers:>10+repos:>10+type:user&per_page=50&page=1&sort=followers&order=desc"
 
             raw_response = make_get_request(uri)
             users = JSON.parse(raw_response)
