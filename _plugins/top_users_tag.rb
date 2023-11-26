@@ -51,7 +51,11 @@ module Jekyll
         def countContributions(user)
             uri = "https://github.com/users/#{user}/contributions"
             raw_response = make_get_request(uri)
-            counter = raw_response.scan(/\>[\s\n\t]+(?<contrib>[0-9\,]+)[\s\n\t]+contributions/).flatten.first.gsub(",", "").to_i
+            begin
+                counter = raw_response.scan(/\>[\s\n\t]+(?<contrib>[0-9\,]+)[\s\n\t]+contributions/).flatten.first.gsub(",", "").to_i
+            rescue
+                counter = 0
+            end
             return counter
         end
 
