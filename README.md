@@ -1,8 +1,6 @@
 # Top Coders Perú
 Based on Github Stats
 
-[![Build Status](https://travis-ci.org/joelibaceta/top-coders-peru.svg?branch=master)](https://travis-ci.org/joelibaceta/top-coders-peru)
-
 <br />
 
 [![CodeCogsEqn.svg](images/update_screenshot.png)](https://topcoders.pe/)
