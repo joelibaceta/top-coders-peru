@@ -124,6 +124,9 @@ module Jekyll
                 followers   = data["followers"]
                 prs         = countPRs(user["login"])
 
+                # Filtrar organizaciones explícitamente
+                next if data["type"] == "Organization"
+
                 p data["name"]
 
                 top_users << {
